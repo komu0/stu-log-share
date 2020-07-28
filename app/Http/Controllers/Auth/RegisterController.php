@@ -50,8 +50,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            //'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:12', new Hankaku],
+            //'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -66,8 +67,21 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            //'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
     }
+    
+    //【参考】トレイト内にあるログイン処理。
+    // public function register(Request $request)
+    // {
+    //     $this->validator($request->all())->validate();
+
+    //     event(new Registered($user = $this->create($request->all())));
+
+    //     $this->guard()->login($user);
+
+    //     return $this->registered($request, $user)
+    //                     ?: redirect($this->redirectPath());
+    // }
 }
