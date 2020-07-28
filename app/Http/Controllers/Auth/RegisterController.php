@@ -9,6 +9,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+//nameを半角英数字のみにするために追加
+use App\Rules\Hankaku;
+
 class RegisterController extends Controller
 {
     /*
@@ -51,7 +54,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             //'name' => ['required', 'string', 'max:255'],
-            'name' => ['required', 'string', 'max:12', new Hankaku],
+            'name' => ['required', 'string', 'max:12', new Hankaku, 'unique:users'],
             //'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -72,7 +75,7 @@ class RegisterController extends Controller
         ]);
     }
     
-    //【参考】トレイト内にあるログイン処理。
+    //【参考】トレイト内にある新規登録処理。
     // public function register(Request $request)
     // {
     //     $this->validator($request->all())->validate();
