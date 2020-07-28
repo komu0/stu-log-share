@@ -12,3 +12,10 @@
 */
 
 Route::get('/', 'StuLogsController@index');
+
+// ユーザ登録
+//return view('auth.register');している
+Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
+//登録処理
+Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
+
