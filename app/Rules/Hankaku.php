@@ -23,9 +23,9 @@ class Hankaku implements Rule
      * @param  mixed  $value
      * @return bool
      */
-    public function passes($attribute, $value)
+  public function passes($attribute, $value)
     {
-        //
+        return preg_match('/^[a-zA-Z0-9]+$/', $value);
     }
 
     /**
@@ -35,6 +35,6 @@ class Hankaku implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return ':attributeは半角英数字で入力してください。';
     }
 }
