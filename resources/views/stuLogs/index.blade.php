@@ -6,7 +6,7 @@
         <div class="offset-md-2 col-md-4 display-4 font-weight-bold p-4">Stu-Log Share</div>
         <div class="col-md-4">
             <div class="h-auto">アカウント登録して、<br>勉強の成果をシェアしよう！</div>
-            <div class="h-auto btn btn-primary">今すぐ新規登録(無料)</div>
+            {!! link_to_route('signup.get', '今すぐ新規登録(無料)', [], ['class' => 'h-auto btn btn-lg btn-primary']) !!}
         </div>
     </div>
     <ul class="nav nav-tabs mb-5">
