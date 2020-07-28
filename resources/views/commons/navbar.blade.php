@@ -27,6 +27,7 @@
                 <li>{!! link_to_route('signup.get', '新規登録(無料)', [], ['class' => 'nav-link']) !!}</li>
                 <li class="nav-item"><a href="#" class="nav-link">ログイン</a></li>
             </ul>
+            @endif
         </div>
     </nav>
 </header>
