@@ -8,6 +8,8 @@
         </button>
 
         <div class="collapse navbar-collapse" id="nav-bar">
+            <ul class="navbar-nav mr-auto"></ul>
+            <ul class="navbar-nav">
             @if (Auth::check())
             <li class="nav-item dropdown">
                 <li class="nav-item"><a href="#" class="nav-link">ログを投稿</a></li>
@@ -21,8 +23,6 @@
                     </ul>
                 </li>
             @else
-            <ul class="navbar-nav mr-auto"></ul>
-            <ul class="navbar-nav">
                 <li class="nav-item"><a href="#" class="nav-link">スタログシェアとは？</a></li>
                 <li>{!! link_to_route('signup.get', '新規登録(無料)', [], ['class' => 'nav-link']) !!}</li>
                 <li>{!! link_to_route('login', 'ログイン', [], ['class' => 'nav-link']) !!}</li>
