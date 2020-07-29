@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/', 'StuLogsController@index');
-
 // ユーザ登録
 //return view('auth.register');している
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
@@ -23,3 +21,10 @@ Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
+
+
+//メインページ
+Route::get('/', 'StuLogsController@index');
+
+//アバウト
+Route::get('about', 'AboutController@index')->name('about');

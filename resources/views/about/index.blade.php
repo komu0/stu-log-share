@@ -1,0 +1,1 @@
+stulogshareとは、studylogをshareするアプリです。
