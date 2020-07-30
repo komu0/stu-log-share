@@ -28,3 +28,7 @@ Route::get('/', 'StuLogsController@index');
 
 //アバウト
 Route::get('about', 'AboutController@index')->name('about');
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('users', 'UsersController', ['only' => ['show']]);
+});
