@@ -2,7 +2,7 @@
 
 @section('content')
   @if (Auth::check())
-    {{ Auth::user()->name }}さんこんにちは
+    {{ Auth::user()->id }}さんこんにちは
   @else
     <div class="container">
         <div class="row text-center d-flex align-items-center mb-4">

@@ -46,6 +46,6 @@ class LoginController extends Controller
     //トレイトAuthenticatesUsers.phpのusername()をemailからnameに変更
     public function username()
     {
-        return 'name';
+        return 'id';
     }
 }

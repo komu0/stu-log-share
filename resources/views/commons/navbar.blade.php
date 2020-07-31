@@ -13,10 +13,10 @@
             @if (Auth::check())
             <li class="nav-item dropdown">
                 <li class="nav-item"><a href="#" class="nav-link">ログを投稿</a></li>
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->id }}</a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         {{-- ユーザ詳細ページへのリンク --}}
-                        <li class="dropdown-item">{!! link_to_route('users.show', 'マイページ', ['user' => Auth::user()->name]) !!}</li>
+                        <li class="dropdown-item">{!! link_to_route('users.show', 'マイページ', ['user' => Auth::user()->id]) !!}</li>
                         <li class="dropdown-divider"></li>
                         {{-- ログアウトへのリンク --}}
                         <li class="dropdown-item">{!! link_to_route('logout.get', 'ログアウト') !!}</li>

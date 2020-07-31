@@ -10,8 +10,8 @@
 
             {!! Form::open(['route' => 'signup.post']) !!}
                 <div class="form-group">
-                    {!! Form::label('name', 'ID(半角英数字12字以下)') !!}
-                    {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
+                    {!! Form::label('id', 'ID(半角英数字12字以下)') !!}
+                    {!! Form::text('id', old('id'), ['class' => 'form-control']) !!}
                 </div>
 
                 <div class="form-group">

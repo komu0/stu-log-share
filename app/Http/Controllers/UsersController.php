@@ -7,10 +7,10 @@ use App\User;
 
 class UsersController extends Controller
 {
-    public function show($name)
+    public function show($id)
     {
-        // nameの値でユーザを検索して取得
-        $user = User::where('name', '=', $name)->firstOrFail();
+        // idの値でユーザを検索して取得
+        $user = User::where('id', '=', $id)->firstOrFail();
 
         // ユーザ詳細ビューでそれを表示
         return view('users.show', [
