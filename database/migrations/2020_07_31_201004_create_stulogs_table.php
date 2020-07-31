@@ -21,7 +21,9 @@ class CreateStulogsTable extends Migration
             $table->date('log_date');
             $table->time('study_time');
             $table->timestamps();
-
+            
+            //user_id1つにつきlogdateは1つなのでunique制約
+            $table->unique(['user_id', 'log_date'],'unique_user_id_log_date'); 
             // 外部キー制約
             $table->foreign('user_id')->references('id')->on('users');
         });
