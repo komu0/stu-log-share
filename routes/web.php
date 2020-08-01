@@ -24,11 +24,12 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 
 //メインページ
-Route::get('/', 'StuLogsController@index');
+Route::get('/', 'StulogsController@index');
 
 //アバウト
 Route::get('about', 'AboutController@index')->name('about');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', 'UsersController', ['only' => ['show']]);
+    Route::resource('stulogs', 'StulogsController', ['only' => ['store', 'destroy']]);
 });

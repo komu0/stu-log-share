@@ -3,8 +3,11 @@
 @section('content')
   @if (Auth::check())
     {{ Auth::user()->id }}さんこんにちは
+      @include('stulogs.allStulogs')
   @else
     <div class="container">
+      @include('stulogs.allStulogs')
+      
         <div class="row text-center d-flex align-items-center mb-4">
             <div class="offset-md-2 col-md-4 display-4 font-weight-bold p-4">Stu-Log Share</div>
             <div class="col-md-4">

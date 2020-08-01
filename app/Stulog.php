@@ -15,4 +15,10 @@ class Stulog extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'log_date',
+    ];
 }
