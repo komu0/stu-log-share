@@ -19,7 +19,8 @@ class CreateStulogsTable extends Migration
             $table->string('content')->nullable();
             $table->string('thought')->nullable();
             $table->date('log_date');
-            $table->time('study_time');
+            $table->integer('study_time_H');
+            $table->integer('study_time_M');
             $table->timestamps();
             
             //user_id1つにつきlogdateは1つなのでunique制約

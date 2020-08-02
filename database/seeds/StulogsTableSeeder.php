@@ -23,7 +23,8 @@ class StulogsTableSeeder extends Seeder
                     'content' => 'test content ' . $i,
                     'thought' => 'test thought ' . $i,
                     'log_date' => '2020-07-' . ($i % 31 + 1),
-                    'study_time' => $i % 10 + 1 .':' . $i % 4 * 15 . ':00',
+                    'study_time_H' => $i % 10 + 1,
+                    'study_time_M' => $i % 4 * 15,
                     'created_at' => '2020-07-' . ($i % 31 + 1) . ' ' . $createH . ':' . $createM . ':' . $createS,
                     'updated_at' => '2020-07-' . ($i % 31 + 1) . ' ' . $createH . ':' . $createM . ':' . $createS,
                 ]);
@@ -32,7 +33,8 @@ class StulogsTableSeeder extends Seeder
                     'user_id' => 'testkun' . $userNo,
                     'content' => 'test content ' . $i,
                     'log_date' => '2020-07-' . ($i % 31 + 1),
-                    'study_time' => $i % 10 + 1 .':' . $i % 4 * 15 . ':00',
+                    'study_time_H' => $i % 10 + 1,
+                    'study_time_M' => $i % 4 * 15,
                     'created_at' => '2020-07-' . ($i % 31 + 1) . ' ' . $createH . ':' . $createM . ':' . $createS,
                     'updated_at' => '2020-07-' . ($i % 31 + 1) . ' ' . $createH . ':' . $createM . ':' . $createS,
                 ]);
@@ -41,7 +43,8 @@ class StulogsTableSeeder extends Seeder
                     'user_id' => 'testkun' . $userNo,
                     'thought' => 'test thought ' . $i,
                     'log_date' => '2020-07-' . ($i % 31 + 1),
-                    'study_time' => $i % 10 + 1 .':' . $i % 4 * 15 . ':00',
+                    'study_time_H' => $i % 10 + 1,
+                    'study_time_M' => $i % 4 * 15,
                     'created_at' => '2020-07-' . ($i % 31 + 1) . ' ' . $createH . ':' . $createM . ':' . $createS,
                     'updated_at' => '2020-07-' . ($i % 31 + 1) . ' ' . $createH . ':' . $createM . ':' . $createS,
                 ]);
@@ -49,7 +52,8 @@ class StulogsTableSeeder extends Seeder
                 DB::table('stulogs')->insert([
                     'user_id' => 'testkun' . $userNo,
                     'log_date' => '2020-07-' . ($i % 31 + 1),
-                    'study_time' => $i % 10 + 1 .':' . $i % 4 * 15 . ':00',
+                    'study_time_H' => $i % 10 + 1,
+                    'study_time_M' => $i % 4 * 15,
                     'created_at' => '2020-07-' . ($i % 31 + 1) . ' ' . $createH . ':' . $createM . ':' . $createS,
                     'updated_at' => '2020-07-' . ($i % 31 + 1) . ' ' . $createH . ':' . $createM . ':' . $createS,
                 ]);

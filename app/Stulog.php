@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Stulog extends Model
 {
-    protected $fillable = ['log_date', 'study_time'];
+    protected $fillable = ['log_date', 'study_time_H', 'study_time_M'];
 
     /**
      * この投稿を所有するユーザ。（ Userモデルとの関係を定義）

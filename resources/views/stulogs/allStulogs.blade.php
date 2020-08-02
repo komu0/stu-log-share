@@ -8,7 +8,7 @@
                         <span>ID:</span>
                         {!! link_to_route('users.show', $stulog->user_id, ['user' => $stulog->user_id]) !!}
                         <span>{{ $stulog->log_date->format('Y年m月d日') }}</span>
-                        <span>勉強時間：{{ $stulog->study_time }}</span>
+                        <span>勉強時間：{{ $stulog->study_time_H }}時間{{ $stulog->study_time_M }}分</span>
                         
                         <span class="text-muted">posted at {{ $stulog->created_at }}</span>
                     </div>
