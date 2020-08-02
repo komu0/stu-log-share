@@ -11,7 +11,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 1; $i <= 100; $i++) {
+        for($i = 1; $i <= 20; $i++) {
             DB::table('users')->insert([
                 'id' => 'testkun' . $i,
                 'password' => bcrypt('password'),

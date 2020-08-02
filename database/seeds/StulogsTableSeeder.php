@@ -11,7 +11,7 @@ class StulogsTableSeeder extends Seeder
      */
     public function run()
     {
-        for($userNo = 1; $userNo <= 100; $userNo++) {
+        for($userNo = 1; $userNo <= 20; $userNo++) {
             for($day = 1; $day <=30; $day++) {
                 $check = rand(1,5);
                 $checkNextDay = rand(1,4);
