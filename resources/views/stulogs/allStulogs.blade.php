@@ -21,4 +21,5 @@
             </li>
         @endforeach
     </ul>
+    {{ $allStulogs->links() }}
 @endif

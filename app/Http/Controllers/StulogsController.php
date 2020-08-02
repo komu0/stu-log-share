@@ -14,7 +14,7 @@ class StulogsController extends Controller
     public function index()
     {
         $data = [];
-        $allStulogs = \App\Stulog::get();
+        $allStulogs = \App\Stulog::orderBy('log_date', 'desc')->orderBy('updated_at', 'desc')->paginate(100);
         $data = [
             'allStulogs' => $allStulogs,
         ];
