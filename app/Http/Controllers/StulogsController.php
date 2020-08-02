@@ -14,7 +14,10 @@ class StulogsController extends Controller
     public function index()
     {
         $data = [];
+        
+        //すべてのスタログを取得
         $stulogs = \App\Stulog::orderBy('log_date', 'desc')->orderBy('updated_at', 'desc')->paginate(100);
+        
         $data = [
             'stulogs' => $stulogs,
         ];
