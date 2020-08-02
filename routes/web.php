@@ -28,8 +28,8 @@ Route::get('/', 'StulogsController@index');
 
 //アバウト
 Route::get('about', 'AboutController@index')->name('about');
+Route::resource('users', 'UsersController', ['only' => ['show']]);
 
-Route::group(['middleware' => ['auth']], function () {
-    Route::resource('users', 'UsersController', ['only' => ['show']]);
+Route::group(['middleware' => ['auth']], function () {;
     Route::resource('stulogs', 'StulogsController', ['only' => ['store', 'destroy']]);
 });
