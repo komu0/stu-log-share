@@ -15,9 +15,13 @@ class UsersController extends Controller
         // 関係するモデルの件数をロード
         $user->loadRelationshipCounts();
 
+        //このユーザのスタログを取得
+        $stulogs = $user->stulogs()->orderBy('log_date', 'desc')->orderBy('updated_at', 'desc')->paginate(10);
+        
         // ユーザ詳細ビューでそれを表示
         return view('users.show', [
             'user' => $user,
+            'stulogs' => $stulogs,
         ]);
     }
     

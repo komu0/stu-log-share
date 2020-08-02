@@ -9,4 +9,5 @@
     <p>フォロー:{{ $user->followings_count }}</p>
     <p>フォロワー:{{ $user->followers_count }}</p>
     <h2>ログ</h2>
+    @include('stulogs.stulogs')
 @endsection
