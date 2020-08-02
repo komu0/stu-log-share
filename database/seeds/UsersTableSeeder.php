@@ -15,6 +15,7 @@ class UsersTableSeeder extends Seeder
             DB::table('users')->insert([
                 'id' => 'testkun' . $i,
                 'password' => bcrypt('password'),
+                'profile' => $i . '番目のテストユーザです。よろしくお願いします。',
                 'created_at' => '2020-07-01 00:00:00',
                 'updated_at' => '2020-07-01 00:00:00',
             ]);
