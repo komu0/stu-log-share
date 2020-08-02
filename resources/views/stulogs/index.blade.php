@@ -3,7 +3,7 @@
 @section('content')
   @if (Auth::check())
     {{ Auth::user()->id }}さんこんにちは
-      @include('stulogs.allStulogs')
+      @include('stulogs.stulogs')
   @else
     <div class="container">
         <div class="row text-center d-flex align-items-center mb-4">
@@ -19,7 +19,7 @@
             </li>
         </ul>
         <div class="tab-content">
-          @include('stulogs.allStulogs')
+          @include('stulogs.stulogs')
         </div>
     </div>
   @endif

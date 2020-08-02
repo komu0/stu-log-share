@@ -1,6 +1,6 @@
-@if (count($allStulogs) > 0)
+@if (count($stulogs) > 0)
     <ul class="list-unstyled">
-        @foreach ($allStulogs as $stulog)
+        @foreach ($stulogs as $stulog)
             <li class="media mb-3">
                 <div class="media-body">
                     <div>
@@ -21,5 +21,5 @@
             </li>
         @endforeach
     </ul>
-    {{ $allStulogs->links() }}
+    {{ $stulogs->links() }}
 @endif
