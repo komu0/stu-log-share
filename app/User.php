@@ -51,4 +51,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Stulog::class);
     }
+    
+    public function studyTime()
+    {
+        $studyTimeH = $this->stulogs()->sum('study_time_H');
+        $studyTimeM = $this->stulogs()->sum('study_time_M');
+        //繰り上がり処理
+        $studyTimeH += intdiv($studyTimeM, 60);
+        $studyTimeM %= 60;
+        $studyTime = $studyTimeH . '時間' . $studyTimeM . '分';
+        return $studyTime;
+    }
 }
