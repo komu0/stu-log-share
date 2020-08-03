@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Stulog;
 
 class StulogsController extends Controller
 {
@@ -19,24 +20,15 @@ class StulogsController extends Controller
         if (\Auth::check()) {
             $user = \Auth::user();
             $user->loadRelationshipCounts();
+            return view('stulogs.index', [
+                'stulogs' => $stulogs,
+                'user' => $user,
+            ]);
         }
         
         return view('stulogs.index', [
             'stulogs' => $stulogs,
-            'user' => $user,
         ]);
-        
-        // if (\Auth::check()) { // 認証済みの場合
-        //     // 認証済みユーザを取得
-        //     $user = \Auth::user();
-        //     // ユーザの投稿の一覧を作成日時の降順で取得
-        //     $microposts = $user->microposts()->orderBy('created_at', 'desc')->paginate(10);
-
-        //     $data = [
-        //         'user' => $user,
-        //         'microposts' => $microposts,
-        //     ];
-        //}
     }
 
     /**
@@ -46,7 +38,12 @@ class StulogsController extends Controller
      */
     public function create()
     {
-        //
+        $stulog = new Stulog;
+
+        // メッセージ作成ビューを表示
+        return view('stulogs.create', [
+            'stulog' => $stulog,
+        ]);
     }
 
     /**
@@ -57,7 +54,27 @@ class StulogsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'time' => 'required',
+            'content' => 'max:255',
+            'log_date' => 'required',
+        ]);
+        
+        $study_time_H=substr($request->time, 0, 2);
+        $study_time_H=(int)$study_time_H;
+        $study_time_M=substr($request->time, 3, 2);
+        $study_time_M=(int)$study_time_M;
+        
+        $user = \Auth::user();
+        dd($user);
+        $request->user()->stulogs()->create([
+            'user_id' => $user->id,
+            'log_date' => $request->log_date,
+            'study_time_H' => $study_time_H,
+            'study_time_M' => $study_time_M,
+        ]);
+        
+        return back();
     }
 
     /**
