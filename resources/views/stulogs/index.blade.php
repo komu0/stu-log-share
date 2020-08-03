@@ -11,6 +11,9 @@
         <li class="nav-item">
             <a href="minLogs" class="nav-link active" data-toggle="tab">みんなのログ</a>
         </li>
+        <li class="nav-item">
+            <a href="{{ route('timeline') }}" class="nav-link">タイムライン</a>
+        </li>
     </ul>
     <div class="tab-content">
       @include('stulogs.stulogs')
