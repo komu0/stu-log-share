@@ -31,7 +31,7 @@ Route::get('about', 'AboutController@index')->name('about');
 Route::resource('users', 'UsersController', ['only' => ['show']]);
 
 Route::group(['middleware' => ['auth']], function () {;
-    Route::resource('stulogs', 'StulogsController', ['only' => ['store', 'destroy']]);
+    Route::resource('stulogs', 'StulogsController', ['only' => ['create', 'store', 'destroy']]);
     Route::get('timeline', 'TimelineController@index')->name('timeline');
     
     Route::group(['prefix' => 'users/{id}'], function () {
