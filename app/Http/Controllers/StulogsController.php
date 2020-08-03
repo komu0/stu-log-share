@@ -54,10 +54,15 @@ class StulogsController extends Controller
      */
     public function store(Request $request)
     {
+        //$requestにはuser_idの値が入っていないが、
+        //user_idとlog_dateの重複を許可しないバリデーションを有効にするため、追加する。
+        $request->merge(array( 'user_id' => $request->user()->id ));
+        
         $request->validate([
             'time' => 'required',
             'content' => 'max:255',
             'log_date' => 'required',
+            'unique_user_id_log_date' => 'unique:stulogs',
         ]);
         
         $study_time_H=substr($request->time, 0, 2);
@@ -66,7 +71,6 @@ class StulogsController extends Controller
         $study_time_M=(int)$study_time_M;
         
         $user = \Auth::user();
-        dd($user);
         $request->user()->stulogs()->create([
             'user_id' => $user->id,
             'log_date' => $request->log_date,
