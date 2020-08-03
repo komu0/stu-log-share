@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Stulog;
+use App\Http\Requests\StulogRequest;
 
 class StulogsController extends Controller
 {
@@ -52,18 +53,11 @@ class StulogsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StulogRequest $request)
     {
         //$requestにはuser_idの値が入っていないが、
         //user_idとlog_dateの重複を許可しないバリデーションを有効にするため、追加する。
         $request->merge(array( 'user_id' => $request->user()->id ));
-        
-        $request->validate([
-            'time' => 'required',
-            'content' => 'max:255',
-            'log_date' => 'required',
-            'unique_user_id_log_date' => 'unique:stulogs',
-        ]);
         
         $study_time_H=substr($request->time, 0, 2);
         $study_time_H=(int)$study_time_H;
