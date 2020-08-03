@@ -13,15 +13,18 @@ class StulogsController extends Controller
      */
     public function index()
     {
-        $data = [];
-        
         //すべてのスタログを取得
         $stulogs = \App\Stulog::orderBy('log_date', 'desc')->orderBy('updated_at', 'desc')->paginate(100);
         
-        $data = [
+        if (\Auth::check()) {
+            $user = \Auth::user();
+            $user->loadRelationshipCounts();
+        }
+        
+        return view('stulogs.index', [
             'stulogs' => $stulogs,
-        ];
-        return view('stulogs.index', $data);
+            'user' => $user,
+        ]);
         
         // if (\Auth::check()) { // 認証済みの場合
         //     // 認証済みユーザを取得
