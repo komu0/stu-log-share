@@ -4,7 +4,7 @@
       <p>{{ $user->id }}</p>
       <p>followings:{{ $user->followings_count }}</p>
       <p>followers:{{ $user->followers_count }}</p>
-      <a href="#">ログを投稿</a>
+      <a href="{{ route('stulogs.create') }}">ログを投稿</a>
     </div>
     <ul class="nav nav-tabs mb-5">
         <li class="nav-item">

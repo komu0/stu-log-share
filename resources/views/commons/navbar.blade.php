@@ -12,7 +12,7 @@
             <ul class="navbar-nav">
             @if (Auth::check())
             <li class="nav-item dropdown">
-                <li class="nav-item"><a href="#" class="nav-link">ログを投稿</a></li>
+                <li class="nav-item"><a href="{{ route('stulogs.create') }}" class="nav-link">ログを投稿</a></li>
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->id }}</a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         {{-- ユーザ詳細ページへのリンク --}}
