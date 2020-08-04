@@ -90,7 +90,17 @@ class StulogsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $stulog = Stulog::findOrFail($id);
+
+        if (\Auth::id() === $stulog->user_id) {
+            $study_time = sprintf('%02d', $stulog->study_time_H) . ':' . sprintf('%02d', $stulog->study_time_M) ;
+            return view('stulogs.edit', [
+                'stulog' => $stulog,
+                'study_time' => $study_time
+            ]);
+        } else {
+            return redirect('/');
+        }
     }
 
     /**
@@ -100,9 +110,21 @@ class StulogsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StulogRequest $request, $id)
     {
-        //
+        $study_time_H=substr($request->time, 0, 2);
+        $study_time_H=(int)$study_time_H;
+        $study_time_M=substr($request->time, 3, 2);
+        $study_time_M=(int)$study_time_M;
+        
+        Stulog::findOrFail($id)->update([
+            'log_date' => $request->log_date,
+            'study_time_H' => $study_time_H,
+            'study_time_M' => $study_time_M,
+            'content' => $request->content,
+            'thought' => $request->thought,
+        ]);
+        return redirect('/');
     }
 
     /**

@@ -12,7 +12,7 @@
                         <span class="text-muted">posted at {{ $stulog->created_at }}</span>
                         @if (Auth::check())
                             @if (Auth::user()->id == $stulog->user_id)
-                                <a href="#">編集</a>
+                                {!! link_to_route('stulogs.edit', '編集', ['stulog' => $stulog->id]) !!}
                             @endif
                         @endif
                     </div>

@@ -149,7 +149,7 @@ return [
         'id' => 'ID',
         'password' => 'パスワード',
         'log_date' => '日付',
-        'time' => '勉強時間',
+        'study_time' => '勉強時間',
     ],
 
 ];

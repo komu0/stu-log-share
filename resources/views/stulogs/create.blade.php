@@ -12,8 +12,8 @@
                 </div>
                 
                 <div class="form-group">
-                    {!! Form::label('time', '勉強時間:') !!}
-                    {!! Form::time('time', null, ['class' => 'form-control']) !!}
+                    {!! Form::label('study_time', '勉強時間:') !!}
+                    {!! Form::time('study_time', null, ['class' => 'form-control']) !!}
                 </div>
                 
                 <div class="form-group">

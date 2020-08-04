@@ -32,7 +32,7 @@ class StulogRequest extends FormRequest
                     $query->where('user_id', $this->input('user_id'));
                 }),
             ],
-            'time' => 'required',
+            'study_time' => 'required',
             'user_id' => 'required'
         ];
     }
@@ -48,5 +48,6 @@ class StulogRequest extends FormRequest
     protected function prepareForValidation()
     {
         $this->merge(array( 'user_id' => $this->user()->id ));
+        $this->merge(array( 'id' => $this->stulog ));
     }
 }
