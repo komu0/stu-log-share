@@ -1,7 +1,7 @@
 @if (count($stulogs) > 0)
     <ul class="list-unstyled">
         @foreach ($stulogs as $stulog)
-            <li class="media mb-3">
+            <li class="media mb-4">
                 <div class="media-body">
                     <div>
                         {{-- 投稿の所有者のユーザ詳細ページへのリンク --}}
