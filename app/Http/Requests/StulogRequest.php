@@ -22,6 +22,7 @@ class StulogRequest extends FormRequest
      *
      * @return array
      */
+    
     public function rules()
     {
         return [
@@ -41,6 +42,7 @@ class StulogRequest extends FormRequest
         return [
             'log_date.required' => '日付を入力してください。',
             'time.required' => '勉強時間を入力してください。',
+            'log_date.unique' => 'この日付のスタログは既に投稿済みです。'
         ];
     }
     
