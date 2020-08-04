@@ -40,8 +40,6 @@ class StulogRequest extends FormRequest
     public function messages()
     {
         return [
-            'log_date.required' => '日付を入力してください。',
-            'time.required' => '勉強時間を入力してください。',
             'log_date.unique' => 'この日付のスタログは既に投稿済みです。'
         ];
     }
