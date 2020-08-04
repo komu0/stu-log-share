@@ -44,10 +44,12 @@ class StulogRequest extends FormRequest
         ];
     }
     
-    //$requestにuser_idをいれ、バリデーションが有効となるようにする。
     protected function prepareForValidation()
     {
+        //$requestにuser_idをいれ、バリデーションが有効となるようにする。
         $this->merge(array( 'user_id' => $this->user()->id ));
+        //$requestにidをいれ、upadteの際自身のレコードを無視するようにする。
+        //rules() の ignore($this->input('id')) の部分。
         $this->merge(array( 'id' => $this->stulog ));
     }
 }
