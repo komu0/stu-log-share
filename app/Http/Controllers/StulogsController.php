@@ -62,10 +62,11 @@ class StulogsController extends Controller
         
         $user = \Auth::user();
         $request->user()->stulogs()->create([
-            'user_id' => $user->id,
             'log_date' => $request->log_date,
             'study_time_H' => $study_time_H,
             'study_time_M' => $study_time_M,
+            'content' => $request->content,
+            'thought' => $request->thought,
         ]);
         return redirect('/');
     }
