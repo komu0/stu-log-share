@@ -23,7 +23,7 @@ class Hankaku implements Rule
      * @param  mixed  $value
      * @return bool
      */
-  public function passes($attribute, $value)
+    public function passes($attribute, $value)
     {
         return preg_match('/^[a-zA-Z0-9]+$/', $value);
     }
