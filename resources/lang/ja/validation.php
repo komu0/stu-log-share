@@ -150,6 +150,7 @@ return [
         'password' => 'パスワード',
         'log_date' => '日付',
         'study_time' => '勉強時間',
+        'current-password' => '現在のパスワード'
     ],
 
 ];

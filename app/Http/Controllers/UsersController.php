@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Http\Requests\PasswordUpdateRequest;
 
 class UsersController extends Controller
 {
@@ -67,5 +68,14 @@ class UsersController extends Controller
             'profile' => $request->profile,
         ]);
         return back();
+    }
+    
+    public function passwordUpdate(PasswordUpdateRequest $request)
+    {
+        \Auth::user()->update([
+            'password' => bcrypt($request->password)
+        ]);
+
+        return redirect()->back()->with('flash_message', 'パスワードを変更しました。');
     }
 }

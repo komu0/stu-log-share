@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth']], function () {;
     Route::get('timeline', 'TimelineController@index')->name('timeline');
     Route::get('setting', 'SettingController@index')->name('setting');
     Route::put('profile/update', 'UsersController@profileUpdate')->name('profile.update');
+    Route::put('password/update', 'UsersController@passwordUpdate')->name('password.update');
     
     Route::group(['prefix' => 'users/{id}'], function () {
         Route::post('follow', 'UserFollowController@store')->name('user.follow');
