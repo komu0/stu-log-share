@@ -122,9 +122,9 @@ class StulogsController extends Controller
     {
         $stulog = Stulog::findOrFail($id);
         
-        $study_time_H=substr($request->time, 0, 2);
+        $study_time_H=substr($request->study_time, 0, 2);
         $study_time_H=(int)$study_time_H;
-        $study_time_M=substr($request->time, 3, 2);
+        $study_time_M=substr($request->study_time, 3, 2);
         $study_time_M=(int)$study_time_M;
         
         if ( \Auth::id() == $stulog->user_id ) {
