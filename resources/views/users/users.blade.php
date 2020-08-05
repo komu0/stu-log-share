@@ -5,9 +5,14 @@
                 <div class="media-body">
                     <div>
                         {{-- 投稿の所有者のユーザ詳細ページへのリンク --}}
-                        <span>ID:</span>
-                        {!! link_to_route('users.show', $user->id, ['user' => $user->id]) !!}
-                        <span>{{ $user->profile }}</span>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <span>ID:</span>
+                                {!! link_to_route('users.show', $user->id, ['user' => $user->id]) !!}
+                                <span>{{ $user->profile }}</span>
+                            </div>
+                            @include('user_follow.follow_button')
+                        </div>
                     </div>
                 </div>
             </li>
