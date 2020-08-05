@@ -67,7 +67,7 @@ class UsersController extends Controller
         \Auth::user()->update([
             'profile' => $request->profile,
         ]);
-        return back();
+        return back()->with('flash_message', 'プロフィールを変更しました。');
     }
     
     public function passwordUpdate(PasswordUpdateRequest $request)
@@ -76,6 +76,6 @@ class UsersController extends Controller
             'password' => bcrypt($request->password)
         ]);
 
-        return redirect()->back()->with('flash_message', 'パスワードを変更しました。');
+        return back()->with('flash_message', 'パスワードを変更しました。');
     }
 }
