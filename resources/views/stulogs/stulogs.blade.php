@@ -18,8 +18,12 @@
                     </div>
                     <div>
                         {{-- 投稿内容 --}}
-                        <p class="mb-0">{!! nl2br(e($stulog->content)) !!}</p>
-                        <p class="mb-0">{!! nl2br(e($stulog->thought)) !!}</p>
+                        @if ($stulog->content != '')
+                            <div>【内容】<br>{!! nl2br(e($stulog->content)) !!}</div>
+                        @endif
+                        @if ($stulog->thought != '')
+                            <div>【感想】<br>{!! nl2br(e($stulog->thought)) !!}</div>
+                        @endif
                     </div>
                 </div>
             </li>
