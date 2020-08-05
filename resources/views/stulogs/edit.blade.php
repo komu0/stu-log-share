@@ -28,6 +28,10 @@
                 {!! Form::submit('編集', ['class' => 'btn btn-primary']) !!}
 
             {!! Form::close() !!}
+            {{-- 投稿削除ボタンのフォーム --}}
+            {!! Form::open(['route' => ['stulogs.destroy', $stulog->id], 'method' => 'delete']) !!}
+                {!! Form::submit('この投稿を削除', ['class' => 'btn btn-danger btn-sm']) !!}
+            {!! Form::close() !!}
         </div>
     </div>
 @endsection

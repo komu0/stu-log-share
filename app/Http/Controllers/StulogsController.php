@@ -112,18 +112,22 @@ class StulogsController extends Controller
      */
     public function update(StulogRequest $request, $id)
     {
+        $stulog = Stulog::findOrFail($id);
+        
         $study_time_H=substr($request->time, 0, 2);
         $study_time_H=(int)$study_time_H;
         $study_time_M=substr($request->time, 3, 2);
         $study_time_M=(int)$study_time_M;
         
-        Stulog::findOrFail($id)->update([
-            'log_date' => $request->log_date,
-            'study_time_H' => $study_time_H,
-            'study_time_M' => $study_time_M,
-            'content' => $request->content,
-            'thought' => $request->thought,
-        ]);
+        if ( \Auth::id() == $stulog->user_id ) {
+            Stulog::findOrFail($id)->update([
+                'log_date' => $request->log_date,
+                'study_time_H' => $study_time_H,
+                'study_time_M' => $study_time_M,
+                'content' => $request->content,
+                'thought' => $request->thought,
+            ]);
+        }
         return redirect('/');
     }
 
@@ -135,6 +139,10 @@ class StulogsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $stulog = Stulog::findOrFail($id);
+        if ( \Auth::id() == $stulog->user_id ) {
+            Stulog::findOrFail($id)->delete();
+        }
+        return redirect('/');
     }
 }
