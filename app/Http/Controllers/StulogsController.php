@@ -76,7 +76,8 @@ class StulogsController extends Controller
             'content' => $request->content,
             'thought' => $request->thought,
         ]);
-        return redirect('/');
+        
+        return redirect('/')->with('flash_message', 'スタログを投稿しました。');;
     }
 
     /**
@@ -107,7 +108,7 @@ class StulogsController extends Controller
                 'study_time' => $study_time
             ]);
         } else {
-            return redirect('/');
+            return redirect('/');;
         }
     }
 
@@ -136,7 +137,7 @@ class StulogsController extends Controller
                 'thought' => $request->thought,
             ]);
         }
-        return redirect('/');
+        return redirect('/')->with('flash_message', 'スタログを編集しました。');
     }
 
     /**
@@ -151,6 +152,6 @@ class StulogsController extends Controller
         if ( \Auth::id() == $stulog->user_id ) {
             Stulog::findOrFail($id)->delete();
         }
-        return redirect('/');
+        return redirect('/')->with('flash_message', 'スタログを削除しました。');
     }
 }
