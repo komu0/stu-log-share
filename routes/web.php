@@ -37,6 +37,9 @@ Route::group(['middleware' => ['auth']], function () {;
     Route::group(['prefix' => 'users/{id}'], function () {
         Route::post('follow', 'UserFollowController@store')->name('user.follow');
         Route::delete('unfollow', 'UserFollowController@destroy')->name('user.unfollow');
+        Route::post('mute', 'UserMuteController@store')->name('user.mute');
+        Route::delete('unmute', 'UserMuteController@destroy')->name('user.unmute');
+        Route::get('mutings', 'UsersController@mutings')->name('users.mutings');
     });
 });
 

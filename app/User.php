@@ -147,4 +147,42 @@ class User extends Authenticatable
         return Stulog::whereIn('user_id', $userIds);
     }
     
+    
+    //ミュート処理
+    
+    public function mutings()
+    {
+        return $this->belongsToMany(User::class, 'user_mute', 'user_id', 'mute_id')->withTimestamps();
+    }
+    
+    public function mute($userId)
+    {
+        $exist = $this->is_muting($userId);
+        $its_me = $this->id == $userId;
+
+        if ($exist || $its_me) {
+            return false;
+        } else {
+            $this->mutings()->attach($userId);
+            return true;
+        }
+    }
+    
+    public function unmute($userId)
+    {
+        $exist = $this->is_muting($userId);
+        $its_me = $this->id == $userId;
+
+        if ($exist && !$its_me) {
+            $this->mutings()->detach($userId);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public function is_muting($userId)
+    {
+        return $this->mutings()->where('mute_id', $userId)->exists();
+    }
 }
