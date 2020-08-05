@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Stulog;
+use App\User;
 use App\Http\Requests\StulogRequest;
 
 class StulogsController extends Controller
@@ -16,20 +17,27 @@ class StulogsController extends Controller
     public function index()
     {
         //すべてのスタログを取得
-        $stulogs = Stulog::orderBy('log_date', 'desc')->orderBy('updated_at', 'desc')->paginate(100);
+        
         
         if (\Auth::check()) {
             $user = \Auth::user();
+            $allIds = User::pluck('users.id')->toArray();
+            $mutingIds = $user->mutings()->pluck('users.id')->toArray();
+            $userIds = array_diff($allIds, $mutingIds);
+            $stulogs = Stulog::whereIn('user_id', $userIds)->orderBy('log_date', 'desc')->orderBy('updated_at', 'desc')->paginate(100);
+            
             $user->loadRelationshipCounts();
+            
             return view('stulogs.index', [
                 'stulogs' => $stulogs,
                 'user' => $user,
             ]);
+        } else {
+            $stulogs = Stulog::orderBy('log_date', 'desc')->orderBy('updated_at', 'desc')->paginate(100);
+            return view('stulogs.index', [
+                'stulogs' => $stulogs,
+            ]);
         }
-        
-        return view('stulogs.index', [
-            'stulogs' => $stulogs,
-        ]);
     }
 
     /**
