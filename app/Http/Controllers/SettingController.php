@@ -15,12 +15,4 @@ class SettingController extends Controller
             'user' => $user,
         ]);
     }
-    
-    public function profileUpdate(Request $request)
-    {
-        \Auth::user()->update([
-            'profile' => $request->profile,
-        ]);
-        return back();
-    }
 }

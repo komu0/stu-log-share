@@ -60,4 +60,12 @@ class UsersController extends Controller
             'users' => $followers,
         ]);
     }
+    
+    public function profileUpdate(Request $request)
+    {
+        \Auth::user()->update([
+            'profile' => $request->profile,
+        ]);
+        return back();
+    }
 }

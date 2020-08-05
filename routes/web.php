@@ -34,7 +34,7 @@ Route::group(['middleware' => ['auth']], function () {;
     Route::resource('stulogs', 'StulogsController', ['only' => ['create', 'edit', 'store', 'update', 'destroy']]);
     Route::get('timeline', 'TimelineController@index')->name('timeline');
     Route::get('setting', 'SettingController@index')->name('setting');
-    Route::put('profile/update', 'SettingController@profileUpdate')->name('profile.update');
+    Route::put('profile/update', 'UsersController@profileUpdate')->name('profile.update');
     
     Route::group(['prefix' => 'users/{id}'], function () {
         Route::post('follow', 'UserFollowController@store')->name('user.follow');
