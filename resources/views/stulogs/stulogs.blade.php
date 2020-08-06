@@ -1,6 +1,6 @@
 @if (count($stulogs) > 0)
     @foreach ($stulogs as $stulog)
-        <div class="mb-4 offset-1 col-10 bg-light p-2">
+        <div class="mb-4 offset-1 col-10 bg-light p-2 border border-primary rounded">
             <div>
                 <div class="d-sm-inline">
                     <span>ID:</span>
