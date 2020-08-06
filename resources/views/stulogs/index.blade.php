@@ -15,7 +15,7 @@
     </div>
     <ul class="nav nav-tabs mb-5">
         <li class="nav-item">
-            <a href="minLogs" class="nav-link active" data-toggle="tab">みんなのログ</a>
+            <a href="#" class="nav-link active" data-toggle="tab">みんなのログ</a>
         </li>
     </ul>
     <div class="tab-content">
