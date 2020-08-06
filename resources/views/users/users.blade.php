@@ -12,7 +12,9 @@
                                 <span>{{ $user->profile }}</span>
                             </div>
                             @include('user_follow.follow_button')
-                            @include('user_mute.mute_button')
+                            @if (\Auth::user()->mutings()->where('mute_id', $user->id)->exists())
+                                @include('user_mute.mute_button')
+                            @endif
                         </div>
                     </div>
                 </div>
