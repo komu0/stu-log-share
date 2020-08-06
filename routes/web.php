@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth']], function () {;
     Route::resource('stulogs', 'StulogsController', ['only' => ['create', 'edit', 'store', 'update', 'destroy']]);
     Route::get('timeline', 'TimelineController@index')->name('timeline');
     Route::get('setting', 'SettingController@index')->name('setting');
+    Route::get('setting/mutings', 'UsersController@mutings')->name('user.mutings');
     Route::put('profile/update', 'UsersController@profileUpdate')->name('profile.update');
     Route::put('password/update', 'UsersController@passwordUpdate')->name('password.update');
     

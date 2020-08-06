@@ -12,6 +12,7 @@
                                 <span>{{ $user->profile }}</span>
                             </div>
                             @include('user_follow.follow_button')
+                            @include('user_mute.mute_button')
                         </div>
                     </div>
                 </div>

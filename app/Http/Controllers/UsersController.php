@@ -62,6 +62,17 @@ class UsersController extends Controller
         ]);
     }
     
+    public function mutings()
+    {
+        $user = \Auth::user();
+        $mutings = $user->mutings()->paginate(10);
+
+        return view('users.mutings', [
+            'user' => $user,
+            'users' => $mutings,
+        ]);
+    }
+    
     public function profileUpdate(Request $request)
     {
         \Auth::user()->update([

@@ -17,7 +17,7 @@
                     <ul class="dropdown-menu dropdown-menu-right">
                         {{-- ユーザ詳細ページへのリンク --}}
                         <li class="dropdown-item">{!! link_to_route('users.show', 'マイページ', ['user' => Auth::user()->id]) !!}</li>
-                        <li class="dropdown-item">{!! link_to_route('setting', '設定', ['user' => Auth::user()->id]) !!}</li>
+                        <li class="dropdown-item">{!! link_to_route('setting', '設定',) !!}</li>
                         <li class="dropdown-divider"></li>
                         {{-- ログアウトへのリンク --}}
                         <li class="dropdown-item">{!! link_to_route('logout.get', 'ログアウト') !!}</li>

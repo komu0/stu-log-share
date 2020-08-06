@@ -66,4 +66,16 @@
         </div>
     </div>
 </div>
+
+<div class="row justify-content-center mb-5">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">その他の設定</div>
+            <div class="card-body">
+                {!! link_to_route('user.mutings', 'ミュート中のユーザ管理', [], ['class' => 'h-auto btn btn-lg btn-primary']) !!}
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
