@@ -24,7 +24,7 @@ class StulogsController extends Controller
             $allIds = User::pluck('users.id')->toArray();
             $mutingIds = $user->mutings()->pluck('users.id')->toArray();
             $userIds = array_diff($allIds, $mutingIds);
-            $stulogs = Stulog::whereIn('user_id', $userIds)->orderBy('log_date', 'desc')->orderBy('updated_at', 'desc')->paginate(100);
+            $stulogs = Stulog::whereIn('user_id', $userIds)->orderBy('log_date', 'desc')->orderBy('updated_at', 'desc')->paginate(10);
             
             $user->loadRelationshipCounts();
             
@@ -33,7 +33,7 @@ class StulogsController extends Controller
                 'user' => $user,
             ]);
         } else {
-            $stulogs = Stulog::orderBy('log_date', 'desc')->orderBy('updated_at', 'desc')->paginate(100);
+            $stulogs = Stulog::orderBy('log_date', 'desc')->orderBy('updated_at', 'desc')->paginate(10);
             return view('stulogs.index', [
                 'stulogs' => $stulogs,
             ]);
