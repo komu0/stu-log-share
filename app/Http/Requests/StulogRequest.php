@@ -36,6 +36,32 @@ class StulogRequest extends FormRequest
             }
         };
         
+        $lineCountCheck = function($attribute, $value, $fail) {
+            if (substr_count($value,"\r\n") >= 10){
+                if($attribute == 'content') {
+                    $fail('内容に改行が多すぎます。');
+                } elseif ($attribute == 'thought') {
+                    $fail('感想に改行が多すぎます。');
+                } else {
+                    $fail('改行が多すぎます。');
+                }
+                    
+            }
+        };
+        
+        $max300 = function($attribute, $value, $fail) {
+            if (mb_strlen(preg_replace("/\r\n/", "", $value)) > 300){
+                if($attribute == 'content') {
+                    $fail('内容は300文字以下で入力してください。');
+                } elseif ($attribute == 'thought') {
+                    $fail('感想は300文字以下で入力してください。');
+                } else {
+                    $fail('文字数が多すぎます。');
+                }
+                    
+            }
+        };
+        
         return [
             'log_date' => [
                 'required',
@@ -45,11 +71,17 @@ class StulogRequest extends FormRequest
                 "after:$releaseDate",
                 "before:$tomorrow",
             ],
-            'study_time' => [ 
-                'required',
-            ],
+            'study_time' => 'required',
             'user_id' => 'required',
-            'content' => $studyTimeZeroCheck,
+            'content' => [
+                $studyTimeZeroCheck,
+                $lineCountCheck,
+                $max300,
+            ],
+            'thought' => [
+                $lineCountCheck,
+                $max300,
+            ],
         ];
     }
     

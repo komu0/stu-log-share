@@ -16,8 +16,8 @@ class CreateStulogsTable extends Migration
         Schema::create('stulogs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('user_id');
-            $table->string('content')->nullable();
-            $table->string('thought')->nullable();
+            $table->text('content')->nullable();
+            $table->text('thought')->nullable();
             $table->date('log_date');
             $table->integer('study_time_H');
             $table->integer('study_time_M');

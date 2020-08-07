@@ -150,6 +150,8 @@ return [
         'password' => 'パスワード',
         'log_date' => '日付',
         'study_time' => '勉強時間',
+        'content' => '内容',
+        'thought' => '感想',
         'current-password' => '現在のパスワード'
     ],
 
