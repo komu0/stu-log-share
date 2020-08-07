@@ -6,7 +6,7 @@
                     <span>ID:
                     {!! link_to_route('users.show', $user->id, ['user' => $user->id]) !!}
                     @if ($user->profile)
-                        <br>　{{ $user->profile }}
+                        <br>{!! nl2br(e($user->profile)) !!}
                     @endif
                     </span>
                 </div>

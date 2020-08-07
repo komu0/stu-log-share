@@ -10,7 +10,7 @@
         <span>フォロー:{!! link_to_route('users.followings', $user->followings_count , ['id' => $user->id]) !!} / </span>
         <span>フォロワー:{!! link_to_route('users.followers', $user->followers_count , ['id' => $user->id]) !!}</span>
     </div>
-    <p class="font-weight-bold mb-4 mt-4">{{ $user->profile }}</p>
+    <p class="font-weight-bold mb-4 mt-4">{!! nl2br(e($user->profile)) !!}</p>
     <div class = "ml-3 mb-4 row">
         @include('user_follow.follow_button')
         @include('user_mute.mute_button')
