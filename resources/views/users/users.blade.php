@@ -26,4 +26,6 @@
         </div>
     @endforeach
     {{ $users->links() }}
+@else
+    <p class="text-center">表示できるユーザ情報がありません。</p>
 @endif

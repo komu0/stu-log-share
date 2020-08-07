@@ -41,4 +41,6 @@
         </div>
     @endforeach
     {{ $stulogs->links() }}
+@else
+    <p class="text-center">表示できるスタログがありません。</p>
 @endif

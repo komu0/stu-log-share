@@ -4,6 +4,7 @@
 <div class="row mb-4">
     <div class="col-6">
         {!! Form::model($stulog, ['route' => ['stulogs.update', $stulog->id], 'method' => 'put']) !!}
+        
             <div class="form-group">
                 {!! Form::label('log_date', '日付:') !!}
                 {!! Form::date('log_date', $stulog->log_date, ['class' => 'form-control']) !!}
