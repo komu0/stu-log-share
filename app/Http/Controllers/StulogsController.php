@@ -77,7 +77,7 @@ class StulogsController extends Controller
             'thought' => $request->thought,
         ]);
         
-        return redirect('/')->with('flash_message', 'スタログを投稿しました。');;
+        return redirect('/')->with('flash_message', 'スタログを投稿しました。(過去のスタログは一番上に表示されない場合があります。)');;
     }
 
     /**

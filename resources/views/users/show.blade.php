@@ -1,14 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>プロフィール</h2>
-    <p>ID:{{ $user->id }}</p>
-    <p>開始日:{{ $user->created_at->format('Y年m月d日') }}</p>
-    <p>総勉強時間:{{ $user->studyTime() }}</p>
-    <p>{{ $user->profile }}</p>
-    <p>フォロー:{!! link_to_route('users.followings', $user->followings_count , ['id' => $user->id]) !!}</p>
-    <p>フォロワー:{!! link_to_route('users.followers', $user->followers_count , ['id' => $user->id]) !!}</p>
-    <div class = "mb-4 row">
+    <h2 class="mb-4">{{ $user->id }}さんのユーザページ</h2>
+    <div>
+        <span class="d-sm-inline">ID:{{ $user->id }} / 開始日:{{ $user->created_at->format('Y年m月d日') }} / </span>
+        <span>総勉強時間:{{ $user->studyTime() }}</span>
+    </div>
+    <div class="d-sm-inline">
+        <span>フォロー:{!! link_to_route('users.followings', $user->followings_count , ['id' => $user->id]) !!} / </span>
+        <span>フォロワー:{!! link_to_route('users.followers', $user->followers_count , ['id' => $user->id]) !!}</span>
+    </div>
+    <p class="font-weight-bold mb-4 mt-4">{{ $user->profile }}</p>
+    <div class = "ml-3 mb-4 row">
         @include('user_follow.follow_button')
         @include('user_mute.mute_button')
     </div>
