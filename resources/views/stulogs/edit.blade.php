@@ -29,9 +29,34 @@
 
         {!! Form::close() !!}
         {{-- 投稿削除ボタンのフォーム --}}
-        {!! Form::open(['route' => ['stulogs.destroy', $stulog->id], 'method' => 'delete']) !!}
-            {!! Form::submit('この投稿を削除', ['class' => 'btn btn-danger btn-sm']) !!}
-        {!! Form::close() !!}
+        
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+          この投稿を削除
+        </button>
+        
+        <!-- Modal -->
+        <div class="modal" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">スタログの削除</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                この投稿を本当に削除しますか？
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                {!! Form::open(['route' => ['stulogs.destroy', $stulog->id], 'method' => 'delete']) !!}
+                    {!! Form::submit('削除', ['class' => 'btn btn-danger']) !!}
+                {!! Form::close() !!}
+              </div>
+            </div>
+          </div>
+        </div>
+
     </div>
 </div>
 @endsection
