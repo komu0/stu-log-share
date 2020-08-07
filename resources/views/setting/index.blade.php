@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
 <h2 class="text-center">設定</h2>
-
 <div class="row justify-content-center mb-5">
     <div class="col-md-8">
         <div class="card">
