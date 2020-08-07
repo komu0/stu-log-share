@@ -27,6 +27,15 @@ class StulogRequest extends FormRequest
     {
         $releaseDate = config('app.releaseDate');
         $tomorrow = date('Y-m-d', strtotime('tomorrow'));
+        
+        $studyTimeZeroCheck = function($attribute, $value, $fail) {
+            if ($this->study_time == '00:00' ) {
+                if ($value != NULL ) {
+                    $fail('勉強時間が00:00のとき、内容は入力できません。');
+                }
+            }
+        };
+        
         return [
             'log_date' => [
                 'required',
@@ -36,8 +45,11 @@ class StulogRequest extends FormRequest
                 "after:$releaseDate",
                 "before:$tomorrow",
             ],
-            'study_time' => 'required',
-            'user_id' => 'required'
+            'study_time' => [ 
+                'required',
+            ],
+            'user_id' => 'required',
+            'content' => $studyTimeZeroCheck,
         ];
     }
     
@@ -46,7 +58,8 @@ class StulogRequest extends FormRequest
         return [
             'log_date.unique' => 'この日付のスタログは既に投稿済みです。',
             'log_date.after' => 'サービス開始以前のスタログは登録できません。',
-            'log_date.before' => '未来のスタログは登録できません。'
+            'log_date.before' => '未来のスタログは登録できません。',
+            'study_time.not_in' => '勉強時間を入力してください。',
         ];
     }
     
