@@ -35,7 +35,7 @@ class UsersController extends Controller
         $user->loadRelationshipCounts();
 
         // ユーザのフォロー一覧を取得
-        $followings = $user->followings()->paginate(10);
+        $followings = $user->followings()->orderBy('pivot_created_at', 'desc')->paginate(10);
 
         // フォロー一覧ビューでそれらを表示
         return view('users.followings', [
@@ -53,8 +53,8 @@ class UsersController extends Controller
         $user->loadRelationshipCounts();
 
         // ユーザのフォロワー一覧を取得
-        $followers = $user->followers()->paginate(10);
-
+        $followers = $user->followers()->orderBy('pivot_created_at', 'desc')->paginate(10);
+        
         // フォロワー一覧ビューでそれらを表示
         return view('users.followers', [
             'user' => $user,
@@ -65,7 +65,7 @@ class UsersController extends Controller
     public function mutings()
     {
         $user = \Auth::user();
-        $mutings = $user->mutings()->paginate(10);
+        $mutings = $user->mutings()->orderBy('pivot_created_at', 'desc')->paginate(10);
 
         return view('users.mutings', [
             'user' => $user,

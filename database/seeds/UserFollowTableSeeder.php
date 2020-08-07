@@ -20,8 +20,8 @@ class UserFollowTableSeeder extends Seeder
                     DB::table('user_follow')->insert([
                         'user_id' => 'testkun' . $i,
                         'follow_id' => 'testkun' . $j,
-                        'created_at' => '2020-07-01 00:00:00',
-                        'updated_at' => '2020-07-01 00:00:00',
+                        'created_at' => '2020-07-03 00:00:00',
+                        'updated_at' => '2020-07-03 00:00:00',
                     ]);
                 }
             }
