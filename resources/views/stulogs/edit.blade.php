@@ -25,7 +25,7 @@
                 {!! Form::textarea('thought', null, ['class' => 'form-control']) !!}
             </div>
             
-            {!! Form::submit('編集', ['class' => 'btn btn-primary']) !!}
+            {!! Form::submit('編集', ['class' => 'btn btn-primary btn-lg mb-4']) !!}
 
         {!! Form::close() !!}
         {{-- 投稿削除ボタンのフォーム --}}
