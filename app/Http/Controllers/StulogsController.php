@@ -77,7 +77,7 @@ class StulogsController extends Controller
             'thought' => $request->thought,
         ]);
         
-        return redirect('/')->with('flash_message', 'スタログを投稿しました。(過去のスタログは一番上に表示されない場合があります。)');;
+        return redirect('/')->with('flash_message', 'スタログを投稿しました。(過去のスタログは一番上に表示されない場合があります。)');
     }
 
     /**
@@ -108,7 +108,7 @@ class StulogsController extends Controller
                 'study_time' => $study_time
             ]);
         } else {
-            return redirect('/');;
+            return redirect('/')->with('flash_message', '権限がありません。');
         }
     }
 
