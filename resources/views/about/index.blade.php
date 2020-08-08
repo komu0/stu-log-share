@@ -8,9 +8,15 @@
     <h2>具体的には何ができるの？</h2>
     <p>毎日のスタログの投稿・削除・編集の他、ユーザのフォローや総勉強時間の計算など、様々な機能がご利用可能です。</p>
 </div>
-<div class="text-center">
-    <p class="h1">さあ、今すぐスタログシェアを始めましょう！</p>
-    {!! link_to_route('signup.get', '新規登録(無料)', [], ['class' => 'pt-1 pb-1 offset-4 col-4 btn-lg btn btn-block btn-primary']) !!}
-    {!! link_to_route('login', 'ログイン', [], ['class' => 'pt-1 pb-1 offset-4 col-4 btn-lg btn btn-block btn-light']) !!}
-</div>
+@if (Auth::check())
+    <div class="text-center">
+        {!! link_to_route('home', 'ホームへ戻る', [], ['class' => 'pt-1 pb-1 offset-4 col-4 btn-lg btn btn-block btn-primary']) !!}
+    </div>
+@else
+    <div class="text-center">
+        <p class="h1">さあ、今すぐスタログシェアを始めましょう！</p>
+        {!! link_to_route('signup.get', '新規登録(無料)', [], ['class' => 'pt-1 pb-1 offset-4 col-4 btn-lg btn btn-block btn-primary']) !!}
+        {!! link_to_route('login', 'ログイン', [], ['class' => 'pt-1 pb-1 offset-4 col-4 btn-lg btn btn-block btn-light']) !!}
+    </div>
+@endif
 @endsection

@@ -15,11 +15,11 @@
                 <li class="nav-item"><a href="{{ route('stulogs.create') }}" class="nav-link">ログを投稿</a></li>
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->id }}</a>
                     <ul class="dropdown-menu dropdown-menu-right">
-                        {{-- ユーザ詳細ページへのリンク --}}
                         <li class="dropdown-item">{!! link_to_route('users.show', 'マイページ', ['user' => Auth::user()->id]) !!}</li>
                         <li class="dropdown-item">{!! link_to_route('setting', '設定',) !!}</li>
                         <li class="dropdown-divider"></li>
-                        {{-- ログアウトへのリンク --}}
+                        <li class="dropdown-item">{!! link_to_route('about', 'スタログシェアとは？',) !!}</li>
+                        <li class="dropdown-divider"></li>
                         <li class="dropdown-item">{!! link_to_route('logout.get', 'ログアウト') !!}</li>
                     </ul>
                 </li>
