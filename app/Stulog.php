@@ -27,4 +27,10 @@ class Stulog extends Model
         'updated_at',
         'log_date',
     ];
+    
+    
+    public function contents()
+    {
+        return $this->hasMany(StulogContent::class);
+    }
 }
