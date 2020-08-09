@@ -54,8 +54,13 @@ class User extends Authenticatable
     
     public function studyTime()
     {
-        $studyTimeH = $this->stulogs()->sum('study_time_H');
-        $studyTimeM = $this->stulogs()->sum('study_time_M');
+        $stulogs = $this->stulogs;
+        $studyTimeH = 0;
+        $studyTimeM = 0;
+        foreach ($stulogs as $stulog){
+            $studyTimeH += $stulog->study_time_H();
+            $studyTimeM += $stulog->study_time_M();
+        }
         //繰り上がり処理
         $studyTimeH += intdiv($studyTimeM, 60);
         $studyTimeM %= 60;

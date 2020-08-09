@@ -35,14 +35,14 @@ class Stulog extends Model
     }
     
     public function study_time_H(){
-        $studyTimeH = $this->$contents()->sum('study_time_H');
-        $studyTimeM = $this->$contents()->sum('study_time_M');
+        $studyTimeH = $this->contents()->sum('study_time_H');
+        $studyTimeM = $this->contents()->sum('study_time_M');
         $studyTimeH += intdiv($studyTimeM, 60);
         return $studyTimeH;
     }
     
     public function study_time_M(){
-        $studyTimeM = $this->$contents()->sum('study_time_M');
+        $studyTimeM = $this->contents()->sum('study_time_M');
         $studyTimeM %= 60;
         return $studyTimeM;
     }
