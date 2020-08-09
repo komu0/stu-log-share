@@ -19,20 +19,33 @@ class StulogContentsTableSeeder extends Seeder
             $user = App\User::findOrFail($user_id);
             $tags = $user->tags()->get();
             
-            for($i = 0; $i < count($tags); $i++) {
+            foreach($tags as $tag) {
                 if(rand(1,2) ==1){
-                    $tag_id = $tags[$i]->id;
+                    $tag_id = $tag->id;
                     $study_time_H = rand(0,5);
                     if($study_time_H == 0){
                         $study_time_M = rand(1,3) * 15;
                     } else {
                         $study_time_M = rand(0,3) * 15;
                     }
+                    if( $tag->category->name == '習い事') {
+                        $content = $tag->name . 'の練習';
+                    } elseif ( $tag->category->name == '未設定') {
+                        $content = '寝る前に' . $tag->name;
+                    } else {
+                        if(rand(1,2) ==1){
+                            $content = $tag->name . 'の予習';
+                        } else {
+                            $content = $tag->name . 'の復習';
+                        }
+                    }
+                    
                     DB::table('stulog_contents')->insert([
                         'stulog_id' => $stulog_id,
                         'tag_id' => $tag_id,
                         'study_time_H' => $study_time_H,
                         'study_time_M' => $study_time_M,
+                        'content' => $content,
                         'created_at' => $created_at,
                         'updated_at' => $updated_at,
                     ]);
