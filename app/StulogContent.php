@@ -10,4 +10,9 @@ class StulogContent extends Model
     {
         return $this->belongsTo(Stulog::class);
     }
+    
+    public function tag()
+    {
+        return $this->belongsTo(Tag::class);
+    }
 }

@@ -21,11 +21,11 @@
             </div>
             <div>
                 <div class="container mt-2 mb-2">
-                    @if ($stulog->content != '')
-                        <div class="row justify-content-center mb-1">
-                            <div class="p-2 col-1 border-left border-top border-bottom border-secondary d-flex align-items-center rounded-left">内容</div>
-                            <div class="p-2 col-9 border border-secondary d-flex align-items-center rounded-right">{!! nl2br(e($stulog->content)) !!}</div>
-                        </div>
+                    @if ($stulog->contents != '')
+                        @foreach ($stulog->contents as $content)
+                            <p>{{ $content->tag->name }}：{{ $content->study_time_H }}時間{{ $content->study_time_M }}分</p>
+                            <p>{{ $content->content }}</p>
+                        @endforeach
                     @endif
                     @if ($stulog->thought != '')
                         <div class="row justify-content-center mb-1">

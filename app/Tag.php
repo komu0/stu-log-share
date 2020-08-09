@@ -15,4 +15,9 @@ class Tag extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    
+    public function stulog_contents()
+    {
+        return $this->hasMany(StulogConotent::class);
+    }
 }
