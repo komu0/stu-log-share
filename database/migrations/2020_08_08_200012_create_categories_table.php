@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStulogsTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreateStulogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('stulogs', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('user_id');
-            $table->text('thought')->nullable();
-            $table->date('log_date');
+            $table->string('name');
             $table->timestamps();
             
-            //user_id1つにつきlogdateは1つなのでunique制約
-            $table->unique(['user_id', 'log_date']); 
+            $table->unique(['user_id', 'name'],'unique_user_id_name'); 
             // 外部キー制約
             $table->foreign('user_id')->references('id')->on('users');
         });
@@ -34,6 +32,6 @@ class CreateStulogsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stulogs');
+        Schema::dropIfExists('categories');
     }
 }
