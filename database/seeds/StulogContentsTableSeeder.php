@@ -29,14 +29,14 @@ class StulogContentsTableSeeder extends Seeder
                         $study_time_M = rand(0,3) * 15;
                     }
                     if( $tag->category->name == '習い事') {
-                        $content = $tag->name . 'の練習';
+                        $comment = $tag->name . 'の練習';
                     } elseif ( $tag->category->name == '未設定') {
-                        $content = '寝る前に' . $tag->name;
+                        $comment = '寝る前に' . $tag->name;
                     } else {
                         if(rand(1,2) ==1){
-                            $content = $tag->name . 'の予習';
+                            $comment = $tag->name . 'の予習';
                         } else {
-                            $content = $tag->name . 'の復習';
+                            $comment = $tag->name . 'の復習';
                         }
                     }
                     
@@ -45,7 +45,7 @@ class StulogContentsTableSeeder extends Seeder
                         'tag_id' => $tag_id,
                         'study_time_H' => $study_time_H,
                         'study_time_M' => $study_time_M,
-                        'content' => $content,
+                        'comment' => $comment,
                         'created_at' => $created_at,
                         'updated_at' => $updated_at,
                     ]);
