@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(StulogsTableSeeder::class);
         $this->call(UserFollowTableSeeder::class);
         $this->call(UserMuteTableSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
     }
 }

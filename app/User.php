@@ -189,4 +189,14 @@ class User extends Authenticatable
     {
         return $this->mutings()->where('mute_id', $userId)->exists();
     }
+    
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
+    }
+    
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
 }

@@ -16,7 +16,7 @@ class CreateTagsTable extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('user_id');
-            $table->unsignedBigInteger('category_id')->nullable;
+            $table->unsignedBigInteger('category_id');
             $table->string('name');
             $table->timestamps();
             
