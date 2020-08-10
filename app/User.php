@@ -52,19 +52,25 @@ class User extends Authenticatable
         return $this->hasMany(Stulog::class);
     }
     
-    public function study_Time()
+    public function study_time_array()
     {
         $stulogs = $this->stulogs;
         $studyTimeH = 0;
         $studyTimeM = 0;
         foreach ($stulogs as $stulog){
-            $studyTimeH += $stulog->study_time_H();
-            $studyTimeM += $stulog->study_time_M();
+            $studyTimeH += $stulog->study_time_array()['H'];
+            $studyTimeM += $stulog->study_time_array()['M'];
         }
         //繰り上がり処理
         $studyTimeH += intdiv($studyTimeM, 60);
         $studyTimeM %= 60;
-        $studyTime = $studyTimeH . '時間' . $studyTimeM . '分';
+        $studyTimeArray = ['H' => $studyTimeH, 'M' => $studyTimeM];
+        return $studyTimeArray;
+    }
+    
+    public function study_time()
+    {
+        $studyTime = ($this->study_time_array()['H']) . '時間' . ($this->study_time_array()['M']) . '分';
         return $studyTime;
     }
     
