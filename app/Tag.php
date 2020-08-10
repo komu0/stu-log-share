@@ -27,8 +27,8 @@ class Tag extends Model
         $studyTimeH = 0;
         $studyTimeM = 0;
         foreach ($stulogs as $stulog){
-            $studyTimeH += $stulog->study_time_array()['H'];
-            $studyTimeM += $stulog->study_time_array()['M'];
+            $studyTimeH += $stulog->study_time_H;
+            $studyTimeM += $stulog->study_time_M;
         }
         //繰り上がり処理
         $studyTimeH += intdiv($studyTimeM, 60);
