@@ -52,7 +52,7 @@ class User extends Authenticatable
         return $this->hasMany(Stulog::class);
     }
     
-    public function studyTime()
+    public function study_Time()
     {
         $stulogs = $this->stulogs;
         $studyTimeH = 0;

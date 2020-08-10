@@ -49,4 +49,5 @@ Route::group(['middleware' => ['auth']], function () {;
 Route::group(['prefix' => 'users/{id}'], function () {
     Route::get('followings', 'UsersController@followings')->name('users.followings');
     Route::get('followers', 'UsersController@followers')->name('users.followers');
+    Route::get('analyze', 'AnalyzeController@index')->name('analyze');
 });

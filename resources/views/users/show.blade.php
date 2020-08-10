@@ -4,7 +4,7 @@
     <h2 class="mb-4">{{ $user->id }}さんのユーザページ</h2>
     <div>
         <span class="d-sm-inline">ID:{{ $user->id }} / 開始日:{{ $user->created_at->format('Y年m月d日') }} / </span>
-        <span>総勉強時間:{{ $user->studyTime() }}</span>
+        <span>総勉強時間:{!! link_to_route('analyze', $user->study_Time(), ['id' => $user->id]) !!}</span>
     </div>
     <div class="d-sm-inline">
         <span>フォロー:{!! link_to_route('users.followings', $user->followings_count , ['id' => $user->id]) !!} / </span>
