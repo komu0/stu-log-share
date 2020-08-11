@@ -34,20 +34,16 @@ class Stulog extends Model
         return $this->hasMany(StulogContent::class);
     }
     
-    public function study_time_array()
-    {
-        $studyTimeH = $this->contents()->sum('study_time_H');
-        $studyTimeM = $this->contents()->sum('study_time_M');
-        //繰り上がり処理
-        $studyTimeH += intdiv($studyTimeM, 60);
-        $studyTimeM %= 60;
-        $studyTimeArray = ['H' => $studyTimeH, 'M' => $studyTimeM];
-        return $studyTimeArray;
-    }
-    
     public function study_time()
     {
-        $studyTime = ($this->study_time_array()['H']) . '時間' . ($this->study_time_array()['M']) . '分';
+        return $this->contents()->sum('study_time');
+    }
+    
+    public function display_study_time()
+    {
+        $H = floor($this->study_time());
+        $M = ($this->study_time() - floor($this->study_time())) * 60;
+        $studyTime =  $H . '時間' . $M . '分';
         return $studyTime;
     }
 }

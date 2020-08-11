@@ -15,4 +15,12 @@ class StulogContent extends Model
     {
         return $this->belongsTo(Tag::class);
     }
+    
+    public function display_study_time()
+    {
+        $H = floor($this->study_time);
+        $M = ($this->study_time - floor($this->study_time)) * 60;
+        $studyTime =  $H . '時間' . $M . '分';
+        return $studyTime;
+    }
 }

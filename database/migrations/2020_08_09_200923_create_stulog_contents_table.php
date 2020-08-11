@@ -17,8 +17,7 @@ class CreateStulogContentsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('stulog_id');
             $table->unsignedBigInteger('tag_id');
-            $table->integer('study_time_H');
-            $table->integer('study_time_M');
+            $table->double('study_time');
             $table->string('comment')->nullable;
             $table->timestamps();
             

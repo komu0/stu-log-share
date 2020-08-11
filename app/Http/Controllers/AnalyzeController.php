@@ -10,16 +10,15 @@ class AnalyzeController extends Controller
     public function index($id)
     {
     $user = User::findOrFail($id);
-    $H = 0;
-    $M = 0;
-    $stulogs = $user->stulogs()->orderBy('log_date')->get();
-    foreach ($stulogs as $stulog) {
-        $H += $stulog->study_time_array()[H];
-        $M += $stulog->study_time_array()[M];
-        $H += intdiv($M, 60);
-        $M %= 60;
-        $whole_study_time = $H . ':' . $M;
-    }
+    // $stulogs = $user->stulogs()->orderBy('log_date')->get();
+    // foreach ($stulogs as $stulog) {
+    //     $H += $stulog->study_time_array()[H];
+    //     $M += $stulog->study_time_array()[M];
+    //     $H += intdiv($M, 60);
+    //     $M %= 60;
+    //     $whole_study_time = $H . ':' . $M;
+    //
+    //}
     
     return view('analyze.index', [
             'user' => $user,

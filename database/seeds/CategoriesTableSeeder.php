@@ -29,7 +29,7 @@ class CategoriesTableSeeder extends Seeder
             
             for($categoryIndex = 0; $categoryIndex < count($categories); $categoryIndex++){
                 //カテゴリーを追加するかどうかの判定
-                if (rand(1,2) == 1) {
+                if (rand(1,3) <= 2) {
                     $category_name = array_keys($categories)[$categoryIndex];
                     
                     DB::table('categories')->insert([
@@ -42,7 +42,7 @@ class CategoriesTableSeeder extends Seeder
                     
                     for($tagIndex = 0; $tagIndex < count($categories["$category_name"]); $tagIndex++){
                         //タグを追加するかどうかの判定
-                        if (rand(1,2) == 1) {
+                        if (rand(1,3) <= 2) {
                             $tag_name = $categories[$category_name][$tagIndex];
                             DB::table('tags')->insert([
                                 'user_id' => $user_id,

@@ -20,14 +20,9 @@ class StulogContentsTableSeeder extends Seeder
             $tags = $user->tags()->get();
             
             foreach($tags as $tag) {
-                if(rand(1,2) ==1){
+                if(rand(2,3) <=2 ){
                     $tag_id = $tag->id;
-                    $study_time_H = rand(0,5);
-                    if($study_time_H == 0){
-                        $study_time_M = rand(1,3) * 15;
-                    } else {
-                        $study_time_M = rand(0,3) * 15;
-                    }
+                    $study_time = rand(1,8) * 0.25;
                     if( $tag->category->name == '習い事') {
                         $comment = $tag->name . 'の練習';
                     } elseif ( $tag->category->name == '未設定') {
@@ -43,8 +38,7 @@ class StulogContentsTableSeeder extends Seeder
                     DB::table('stulog_contents')->insert([
                         'stulog_id' => $stulog_id,
                         'tag_id' => $tag_id,
-                        'study_time_H' => $study_time_H,
-                        'study_time_M' => $study_time_M,
+                        'study_time' => $study_time,
                         'comment' => $comment,
                         'created_at' => $created_at,
                         'updated_at' => $updated_at,

@@ -11,7 +11,7 @@
                 </div>
                 <div class="d-sm-inline">
                     <span>勉強時間:</span> 
-                    <span class="mr-3 font-weight-bold">{{ $stulog->study_time() }}</span>
+                    <span class="mr-3 font-weight-bold">{{ $stulog->display_study_time() }}</span>
                 </div>
                 @if (Auth::check())
                     @if (Auth::user()->id == $stulog->user_id)
@@ -24,7 +24,7 @@
                     @if ($stulog->contents != '')
                         <div class="mb-2">
                         @foreach ($stulog->contents as $content)
-                            {{ $content->tag->name }}：{{ $content->study_time_H }}時間{{ $content->study_time_M }}分 / {{ $content->comment }}<br>
+                            {{ $content->tag->name }}：{{ $content->display_study_time() }} / {{ $content->comment }}<br>
                         @endforeach
                         </div>
                     @endif
