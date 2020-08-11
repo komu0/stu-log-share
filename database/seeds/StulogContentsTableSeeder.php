@@ -11,10 +11,10 @@ class StulogContentsTableSeeder extends Seeder
      */
     public function run()
     {
-        $created_at = '2020-07-09 00:00:00';
-        $updated_at = $created_at;
         for($stulog_id = 1; $stulog_id <= 600; $stulog_id++) {
             $stulog = \App\Stulog::findOrFail($stulog_id);
+            $created_at = $stulog->created_at;
+            $updated_at = $stulog->updated_at;
             $user_id = $stulog->user_id;
             $user = App\User::findOrFail($user_id);
             $tags = $user->tags()->get();

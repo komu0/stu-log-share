@@ -210,4 +210,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Category::class);
     }
+    
+    public function starting_study_day()
+    {
+        return $this->stulogs()->orderBy('log_date')->first()->log_date;
+    }
+    
+    public function stulog_contents()
+    {
+        return $this->hasManyThrough(StulogContent::class, Stulog::class);
+    }
 }
