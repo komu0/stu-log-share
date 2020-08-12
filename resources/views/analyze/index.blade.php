@@ -13,7 +13,17 @@
 </section>
 <section class="mb-3">
     <h2>勉強時間推移</h2>
-    総勉強時間
-    
+    <p>最終的にはグラフを書く</p>
+    <div class="row">
+    @foreach ($timeTransArray as $name=>$timeTrans)
+        <div class="col-md-2">
+        {{$name}}<br>
+        @foreach ($timeTrans as $date=>$time)
+            {{$date}}：{{$time}}<br>
+        @endforeach
+        <br>
+        </div>
+    @endforeach
+    </div>
 </section>
 @endsection
