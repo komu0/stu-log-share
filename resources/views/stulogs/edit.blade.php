@@ -16,19 +16,19 @@
           @if ($i == 0)
             {!! Form::label('tag_name' . $i, 'タグ') !!}
           @endif
-            {!! Form::text('tag_name' . $i, $contentsArray[$i]['タグ'] , ['class' => 'form-control']) !!}
+            {!! Form::text("contentsArray[$i][タグ]", old($contentsArray[$i]['タグ'],$contentsArray[$i]['タグ']) , ['class' => 'form-control']) !!}
         </div>
         <div class="form-group col-sm-2">
           @if ($i == 0)
             {!! Form::label('study_time' . $i, '勉強時間') !!}
           @endif
-            {!! Form::time('study_time' . $i, $contentsArray[$i]['勉強時間'], ['class' => 'form-control']) !!}
+            {!! Form::time("contentsArray[$i][勉強時間]", old($contentsArray[$i]['勉強時間'],$contentsArray[$i]['勉強時間']), ['class' => 'form-control']) !!}
         </div>
         <div class="form-group col-sm-7">
           @if ($i == 0)
             {!! Form::label('content' . $i, '内容') !!}
           @endif
-            {!! Form::text('content' . $i, $contentsArray[$i]['内容'], ['class' => 'form-control']) !!}
+            {!! Form::text("contentsArray[$i][内容]", old($contentsArray[$i]['内容'],$contentsArray[$i]['内容']), ['class' => 'form-control']) !!}
         </div>
       </div>
       @endforeach

@@ -107,7 +107,6 @@ class StulogsController extends Controller
 
         if (\Auth::id() === $stulog->user_id) {
             $contents = $stulog->contents;
-            
             $contentsArray = [];
             foreach($contents as $content){
                 $contentsArray[] = [
@@ -155,9 +154,6 @@ class StulogsController extends Controller
         if ( \Auth::id() == $stulog->user_id ) {
             Stulog::findOrFail($id)->update([
                 'log_date' => $request->log_date,
-                'study_time_H' => $study_time_H,
-                'study_time_M' => $study_time_M,
-                'content' => $request->content,
                 'thought' => $request->thought,
             ]);
         }

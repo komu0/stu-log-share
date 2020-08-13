@@ -28,38 +28,71 @@ class StulogRequest extends FormRequest
         $releaseDate = config('app.releaseDate');
         $tomorrow = date('Y-m-d', strtotime('tomorrow'));
         
-        $studyTimeZeroCheck = function($attribute, $value, $fail) {
-            if ($this->study_time == '00:00' ) {
-                if ($value != NULL ) {
-                    $fail('勉強時間が00:00のとき、内容は入力できません。');
+        $inputCheck = function($attribute, $value, $fail) {
+            $messages = [];
+            foreach ($value as $key => $content) {
+                if ($content['タグ'] == NULL ) {
+                    if ($content['勉強時間'] == '00:00' || $content['勉強時間'] == NULL) {
+                        if ($content['内容'] != NULL) {
+                            $messages[] = ('[' . ($key + 1) . '-タグ][' . ($key + 1) . '-勉強時間]が入力されていません。');
+                        }
+                    } else {
+                        $messages[] = ('[' . ($key + 1) . '-タグ]が入力されていません。');
+                    }
+                } else {
+                    if ($content['勉強時間'] == '00:00' || $content['勉強時間'] == NULL) {
+                        $messages[] = ('[' . ($key + 1) . '-勉強時間]が入力されていません。');
+                    }
                 }
+            }
+            if($messages){
+                $fail($messages);
             }
         };
         
         $lineCountCheck = function($attribute, $value, $fail) {
             if (substr_count($value,"\r\n") >= 10){
-                if($attribute == 'content') {
-                    $fail('内容に改行が多すぎます。');
-                } elseif ($attribute == 'thought') {
+                if ($attribute == 'thought') {
                     $fail('感想に改行が多すぎます。');
                 } else {
                     $fail('改行が多すぎます。');
                 }
-                    
             }
         };
         
         $max300 = function($attribute, $value, $fail) {
             if (mb_strlen(preg_replace("/\r\n/", "", $value)) > 300){
-                if($attribute == 'content') {
-                    $fail('内容は300文字以下で入力してください。');
-                } elseif ($attribute == 'thought') {
+                if ($attribute == 'thought') {
                     $fail('感想は300文字以下で入力してください。');
                 } else {
                     $fail('文字数が多すぎます。');
                 }
-                    
             }
+        };
+        
+        $max100 = function($attribute, $value, $fail) {
+            $messages = [];
+            foreach ($value as $key => $content) {
+                if (mb_strlen(preg_replace("/\r\n/", "", $content['内容'])) > 100){
+                    $messages[] = ('[' . ($key + 1) . '-内容]は100字以下で入力してください。');
+                }
+            }
+            if($messages) {
+                $fail($messages);
+            }
+        };
+        
+        $uniqueTag = function($attribute, $value, $fail) {
+            $messages = [];
+            $array = [];
+            foreach ($value as $content) {
+                if($content['タグ']) {
+                    $array[] = $content['タグ'];
+                }
+            }
+            if (max(array_count_values($array)) != 1) {
+                $fail("同じタグを2つ以上登録することはできません。");
+            };
         };
         
         return [
@@ -71,16 +104,15 @@ class StulogRequest extends FormRequest
                 "after:$releaseDate",
                 "before:$tomorrow",
             ],
-            'study_time' => 'required',
             'user_id' => 'required',
-            'content' => [
-                $studyTimeZeroCheck,
-                $lineCountCheck,
-                $max300,
-            ],
             'thought' => [
                 $lineCountCheck,
                 $max300,
+            ],
+            'contentsArray' => [
+                $inputCheck,
+                $max100,
+                $uniqueTag,
             ],
         ];
     }
@@ -97,6 +129,7 @@ class StulogRequest extends FormRequest
     
     protected function prepareForValidation()
     {
+        //dd($this->contentsArray);
         //$requestにuser_idをいれ、バリデーションが有効となるようにする。
         $this->merge(array( 'user_id' => $this->user()->id ));
         
