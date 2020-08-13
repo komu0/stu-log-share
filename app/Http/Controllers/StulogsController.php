@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Stulog;
+use App\StulogContent;
 use App\User;
 use App\Http\Requests\StulogRequest;
 
@@ -48,10 +49,12 @@ class StulogsController extends Controller
     public function create()
     {
         $stulog = new Stulog;
+        $stulogContent = new StulogContent;
 
         // メッセージ作成ビューを表示
         return view('stulogs.create', [
             'stulog' => $stulog,
+            'stulogContent' => $stulogContent,
         ]);
     }
 
@@ -63,6 +66,7 @@ class StulogsController extends Controller
      */
     public function store(StulogRequest $request)
     {
+        dd($request);
         $study_time_H=substr($request->study_time, 0, 2);
         $study_time_H=(int)$study_time_H;
         $study_time_M=substr($request->study_time, 3, 2);
@@ -102,10 +106,30 @@ class StulogsController extends Controller
         $stulog = Stulog::findOrFail($id);
 
         if (\Auth::id() === $stulog->user_id) {
-            $study_time = sprintf('%02d', $stulog->study_time_H) . ':' . sprintf('%02d', $stulog->study_time_M) ;
+            $contents = $stulog->contents;
+            
+            $contentsArray = [];
+            foreach($contents as $content){
+                $contentsArray[] = [
+                    "タグ" => $content->tag->name,
+                    "勉強時間" => $content->display_study_time_hhmm(),
+                    "内容" => $content->comment,
+                ];
+            }
+            while(true){
+                $contentsArray[] = [
+                    "タグ" => '',
+                    "勉強時間" => '',
+                    "内容" => '',
+                    ];
+                if (count($contentsArray) >= 10) {
+                    break;
+                }
+            }
+            
             return view('stulogs.edit', [
                 'stulog' => $stulog,
-                'study_time' => $study_time
+                'contentsArray' => $contentsArray,
             ]);
         } else {
             return redirect('/')->with('flash_message', '権限がありません。');

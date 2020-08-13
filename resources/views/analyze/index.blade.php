@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<h1 class="mb-4">{{ $user->id }}さんの分析ページ</h1>
+<h1 class="mb-4">{!! link_to_route('users.show', $user->id, ['user' => $user->id]) !!}さんの分析ページ</h1>
 <section class="mb-3">
     <h2>勉強時間内訳</h2>
     総勉強時間：{{$user->display_study_time()}}<br>

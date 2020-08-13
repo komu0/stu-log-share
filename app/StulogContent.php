@@ -23,4 +23,9 @@ class StulogContent extends Model
         $studyTime =  $H . '時間' . $M . '分';
         return $studyTime;
     }
+    
+    public function display_study_time_hhmm() {
+        return (sprintf('%02d', floor($this->study_time))) . ':'
+        . (sprintf('%02d', (($this->study_time - floor($this->study_time)) * 60)));
+    }
 }
