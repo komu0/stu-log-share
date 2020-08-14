@@ -8,8 +8,8 @@ class Tag extends Model
 {
     //createするときはcategoryから
     protected $fillable = [
-        'category_id',
         'name',
+        'user_id',
     ];
     
     public function user()

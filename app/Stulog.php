@@ -32,6 +32,11 @@ class Stulog extends Model
         return $this->hasMany(StulogContent::class);
     }
     
+    public function tags()
+    {
+        return $this->hasMany(StulogContent::class);
+    }
+    
     public function study_time()
     {
         return $this->contents()->sum('study_time');

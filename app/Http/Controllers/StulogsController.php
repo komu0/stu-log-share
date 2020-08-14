@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Library\BaseClass;
 use App\Stulog;
 use App\StulogContent;
 use App\User;
@@ -17,9 +18,6 @@ class StulogsController extends Controller
      */
     public function index()
     {
-        //すべてのスタログを取得
-        
-        
         if (\Auth::check()) {
             $user = \Auth::user();
             $allIds = User::pluck('users.id')->toArray();
@@ -145,17 +143,39 @@ class StulogsController extends Controller
     public function update(StulogRequest $request, $id)
     {
         $stulog = Stulog::findOrFail($id);
+        $user = $stulog->user;
+        //一度現在のスタログコンテンツは削除する。
+        $stulog->contents()->delete();
         
-        $study_time_H=substr($request->study_time, 0, 2);
-        $study_time_H=(int)$study_time_H;
-        $study_time_M=substr($request->study_time, 3, 2);
-        $study_time_M=(int)$study_time_M;
-        
-        if ( \Auth::id() == $stulog->user_id ) {
-            Stulog::findOrFail($id)->update([
+        if ( \Auth::id() == $user->id ) {
+            $stulog = Stulog::findOrFail($id);
+            //スタログを更新
+            $stulog->update([
                 'log_date' => $request->log_date,
                 'thought' => $request->thought,
             ]);
+            //コンテンツを更新
+            foreach($request->contentsArray as $content){
+            //コンテンツのタグが未入力でない場合
+                if($content['タグ']){
+                //タグが存在しない場合、作成する。
+                    if($user->tags()->where('name',$content['タグ'])->doesntExist()){
+                        //未設定カテゴリを作成。
+                        $category = $user->categories()->firstOrNew([
+                            'name' => '未設定'
+                        ]);
+                        $category->tags()->create([
+                            'user_id' => $user->id,
+                            'name' => $content['タグ'],
+                        ]);
+                    }
+                    $stulog->contents()->create([
+                        'tag_id' => $user->tags()->where('name',$content['タグ'])->first()->id,
+                        'study_time' => BaseClass::time_hhmm_to_double($content['勉強時間']),
+                        'comment' => $content['内容'],
+                    ]);
+                }
+            };
         }
         return redirect('/')->with('flash_message', 'スタログを編集しました。');
     }
