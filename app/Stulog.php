@@ -6,11 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Stulog extends Model
 {
+    // createするときはuserから。
     protected $fillable = [
         'log_date',
-        'study_time_H',
-        'study_time_M',
-        'content',
         'thought',
     ];
 

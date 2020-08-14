@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class StulogContent extends Model
 {
+    //createするときはuser->tagから。
+    protected $fillable = [
+        'tag_id',
+        'study_time',
+        'comment',
+    ];
+    
     public function stulog()
     {
         return $this->belongsTo(Stulog::class);

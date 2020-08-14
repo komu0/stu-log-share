@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
+    //createするときはcategoryから
+    protected $fillable = [
+        'category_id',
+        'name',
+    ];
+    
     public function user()
     {
         return $this->belongsTo(User::class);
