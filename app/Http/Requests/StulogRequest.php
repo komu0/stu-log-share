@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Library\BaseClass;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -70,6 +71,19 @@ class StulogRequest extends FormRequest
             }
         };
         
+
+        $max15 = function($attribute, $value, $fail) {
+            $messages = [];
+            foreach ($value as $key => $content) {
+                if (mb_strlen(preg_replace("/\r\n/", "", $content['タグ'])) > 10){
+                    $messages[] = ('[' . ($key + 1) . '-タグ]は10字以下で入力してください。');
+                }
+            }
+            if($messages) {
+                $fail($messages);
+            }
+        };
+        
         $max100 = function($attribute, $value, $fail) {
             $messages = [];
             foreach ($value as $key => $content) {
@@ -90,8 +104,22 @@ class StulogRequest extends FormRequest
                     $array[] = $content['タグ'];
                 }
             }
-            if (max(array_count_values($array)) != 1) {
-                $fail("同じタグを2つ以上登録することはできません。");
+            if($array){
+                if (max(array_count_values($array)) != 1) {
+                    $fail("同じタグを2つ以上登録することはできません。");
+                }
+            }
+        };
+        
+        $max24h = function($attribute, $value, $fail) {
+            $time = 0;
+            foreach ($value as $content) {
+                if($content['勉強時間']) {
+                    $time += BaseClass::time_hhmm_to_double($content['勉強時間']);
+                }
+            }
+            if($time >= 24) {
+                $fail("総勉強時間が24時間を超えています。");
             };
         };
         
@@ -113,6 +141,8 @@ class StulogRequest extends FormRequest
                 $inputCheck,
                 $max100,
                 $uniqueTag,
+                $max15,
+                $max24h,
             ],
         ];
     }
