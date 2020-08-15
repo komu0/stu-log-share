@@ -23,8 +23,8 @@ class CreateStulogContentsTable extends Migration
             
             $table->unique(['stulog_id', 'tag_id']); 
             
-            $table->foreign('stulog_id')->references('id')->on('stulogs');
-            $table->foreign('tag_id')->references('id')->on('tags');
+            $table->foreign('stulog_id')->references('id')->on('stulogs')->onDelete('cascade');
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');;
         });
     }
 

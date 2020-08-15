@@ -22,7 +22,7 @@ class CreateTagsTable extends Migration
             $table->unique(['category_id', 'name']); 
             
             // 外部キー制約
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

@@ -23,7 +23,7 @@ class CreateStulogsTable extends Migration
             //user_id1つにつきlogdateは1つなのでunique制約
             $table->unique(['user_id', 'log_date']); 
             // 外部キー制約
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
