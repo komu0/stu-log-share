@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\Library\BaseClass;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,14 +26,10 @@ class StulogContent extends Model
     
     public function display_study_time()
     {
-        $H = floor($this->study_time);
-        $M = ($this->study_time - floor($this->study_time)) * 60;
-        $studyTime =  $H . '時間' . $M . '分';
-        return $studyTime;
+        return BaseClass::time_double_to_japanese($this->study_time);
     }
     
     public function display_study_time_hhmm() {
-        return (sprintf('%02d', floor($this->study_time))) . ':'
-        . (sprintf('%02d', (($this->study_time - floor($this->study_time)) * 60)));
+        return BaseClass::time_double_to_hhmm($this->study_time);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use App\Library\BaseClass;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -206,9 +207,6 @@ class User extends Authenticatable
     
     public function display_study_time()
     {
-        $H = floor($this->study_time());
-        $M = ($this->study_time() - floor($this->study_time())) * 60;
-        $studyTime =  $H . '時間' . $M . '分';
-        return $studyTime;
+        return BaseClass::time_double_to_japanese($this->study_time());
     }
 }
