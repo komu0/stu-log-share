@@ -14,25 +14,24 @@
         </div>
         <div class="form-group col-sm-2">
           @if ($i == 0)
-            {!! Form::label('tag_name' . $i, 'タグ') !!}
+            {!! Form::label('tag_name', 'タグ') !!}
           @endif
             {!! Form::text("contentsArray[$i][タグ]", old($contentsArray[$i]['タグ'],$contentsArray[$i]['タグ']) , ['class' => 'form-control']) !!}
         </div>
         <div class="form-group col-sm-2">
           @if ($i == 0)
-            {!! Form::label('study_time' . $i, '勉強時間') !!}
+            {!! Form::label('study_time', '勉強時間') !!}
           @endif
             {!! Form::time("contentsArray[$i][勉強時間]", old($contentsArray[$i]['勉強時間'],$contentsArray[$i]['勉強時間']), ['class' => 'form-control']) !!}
         </div>
         <div class="form-group col-sm-7">
           @if ($i == 0)
-            {!! Form::label('content' . $i, '内容') !!}
+            {!! Form::label('content', '内容') !!}
           @endif
             {!! Form::text("contentsArray[$i][内容]", old($contentsArray[$i]['内容'],$contentsArray[$i]['内容']), ['class' => 'form-control']) !!}
         </div>
       </div>
       @endforeach
-  
       <div class="form-group">
           {!! Form::label('thought', '感想') !!}
           {!! Form::textarea('thought', null, ['class' => 'form-control']) !!}

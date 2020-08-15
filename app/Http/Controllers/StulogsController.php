@@ -47,12 +47,20 @@ class StulogsController extends Controller
     public function create()
     {
         $stulog = new Stulog;
-        $stulogContent = new StulogContent;
+        
+        $contentsArray = [];
+        while(count($contentsArray) < 10){
+            $contentsArray[] = [
+                "タグ" => '',
+                "勉強時間" => '',
+                "内容" => '',
+            ];
+        }
 
         // メッセージ作成ビューを表示
         return view('stulogs.create', [
             'stulog' => $stulog,
-            'stulogContent' => $stulogContent,
+            'contentsArray' => $contentsArray,
         ]);
     }
 
@@ -64,22 +72,38 @@ class StulogsController extends Controller
      */
     public function store(StulogRequest $request)
     {
-        dd($request);
-        $study_time_H=substr($request->study_time, 0, 2);
-        $study_time_H=(int)$study_time_H;
-        $study_time_M=substr($request->study_time, 3, 2);
-        $study_time_M=(int)$study_time_M;
-        
         $user = \Auth::user();
-        $request->user()->stulogs()->create([
+        $stulog = $request->user()->stulogs()->create([
             'log_date' => $request->log_date,
-            'study_time_H' => $study_time_H,
-            'study_time_M' => $study_time_M,
-            'content' => $request->content,
             'thought' => $request->thought,
         ]);
-        
-        return redirect('/')->with('flash_message', 'スタログを投稿しました。(過去のスタログは一番上に表示されない場合があります。)');
+        $messages = '';
+        foreach($request->contentsArray as $content){
+            //コンテンツのタグが未入力であれば処理しない。
+            if($content['タグ'] == NULL) {
+                continue;
+            }
+            //タグが存在しない場合、作成する。
+            if($user->tags()->where('tags.name',$content['タグ'])->doesntExist()){
+                //未設定カテゴリを作成。
+                $category = $user->categories()->firstOrCreate([
+                    'name' => '未設定'
+                ]);
+                $category->tags()->create([
+                    'name' => $content['タグ'],
+                ]);
+                $messages .= 'タグ「' . $content['タグ'] . '」を新規追加しました。' . PHP_EOL;
+            }
+            //study_contentsテーブルにcreateする。
+            $stulog->contents()->create([
+                'tag_id' => $user->tags()->where('tags.name',$content['タグ'])->first()->id,
+                'study_time' => BaseClass::time_hhmm_to_double($content['勉強時間']),
+                'comment' => $content['内容'],
+            ]);
+        };
+          
+        $messages .=  'スタログを投稿しました。(過去のスタログは一番上に表示されない場合があります。)';
+        return redirect('/')->with('flash_message', $messages);
     }
 
     /**
@@ -103,34 +127,34 @@ class StulogsController extends Controller
     {
         $stulog = Stulog::findOrFail($id);
 
-        if (\Auth::id() === $stulog->user_id) {
-            $contents = $stulog->contents;
-            $contentsArray = [];
-            foreach($contents as $content){
-                $contentsArray[] = [
-                    "タグ" => $content->tag->name,
-                    "勉強時間" => $content->display_study_time_hhmm(),
-                    "内容" => $content->comment,
-                ];
-            }
-            while(true){
-                $contentsArray[] = [
-                    "タグ" => '',
-                    "勉強時間" => '',
-                    "内容" => '',
-                    ];
-                if (count($contentsArray) >= 10) {
-                    break;
-                }
-            }
-            
-            return view('stulogs.edit', [
-                'stulog' => $stulog,
-                'contentsArray' => $contentsArray,
-            ]);
-        } else {
+        if (\Auth::id() != $stulog->user_id) {
             return redirect('/')->with('flash_message', '権限がありません。');
         }
+        
+        $contents = $stulog->contents;
+        $contentsArray = [];
+        foreach($contents as $content){
+            $contentsArray[] = [
+                "タグ" => $content->tag->name,
+                "勉強時間" => $content->display_study_time_hhmm(),
+                "内容" => $content->comment,
+            ];
+        }
+        while(true){
+            $contentsArray[] = [
+                "タグ" => '',
+                "勉強時間" => '',
+                "内容" => '',
+                ];
+            if (count($contentsArray) >= 10) {
+                break;
+            }
+        }
+        
+        return view('stulogs.edit', [
+            'stulog' => $stulog,
+            'contentsArray' => $contentsArray,
+        ]);
     }
 
     /**
@@ -144,6 +168,7 @@ class StulogsController extends Controller
     {
         $stulog = Stulog::findOrFail($id);
         $user = $stulog->user;
+        $messages = '';
         //一度現在のスタログコンテンツは削除する。
         $stulog->contents()->delete();
         
@@ -168,6 +193,7 @@ class StulogsController extends Controller
                     $category->tags()->create([
                         'name' => $content['タグ'],
                     ]);
+                    $messages .= 'タグ「' . $content['タグ'] . '」を新規追加しました。' . PHP_EOL;
                 }
                 //study_contentsテーブルにcreateする。
                 $stulog->contents()->create([
@@ -177,7 +203,8 @@ class StulogsController extends Controller
                 ]);
             };
         }
-        return redirect('/')->with('flash_message', 'スタログを編集しました。');
+        $messages .=  'スタログを投稿しました。(過去のスタログは一番上に表示されない場合があります。)';
+        return redirect('/')->with('flash_message', $messages);
     }
 
     /**
