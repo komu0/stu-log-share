@@ -181,7 +181,7 @@ class User extends Authenticatable
     
     public function tags()
     {
-        return $this->hasMany(Tag::class);
+        return $this->hasManyThrough(Tag::class, Category::class);
     }
     
     public function categories()

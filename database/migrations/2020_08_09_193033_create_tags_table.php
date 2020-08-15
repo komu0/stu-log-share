@@ -15,15 +15,13 @@ class CreateTagsTable extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('user_id');
             $table->unsignedBigInteger('category_id');
             $table->string('name');
             $table->timestamps();
             
-            $table->unique(['user_id', 'name']); 
+            $table->unique(['category_id', 'name']); 
             
             // 外部キー制約
-            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('category_id')->references('id')->on('categories');
         });
     }

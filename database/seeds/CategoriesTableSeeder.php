@@ -45,7 +45,6 @@ class CategoriesTableSeeder extends Seeder
                         if (rand(1,3) <= 2) {
                             $tag_name = $categories[$category_name][$tagIndex];
                             DB::table('tags')->insert([
-                                'user_id' => $user_id,
                                 'category_id' => $category_id,
                                 'name' => $tag_name,
                                 'created_at' => $created_at,
