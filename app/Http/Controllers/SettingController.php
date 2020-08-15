@@ -15,4 +15,12 @@ class SettingController extends Controller
             'user' => $user,
         ]);
     }
+    
+    public function tags()
+    {
+        $user = \Auth::user();
+        return view('setting.tags', [
+            'user' => $user,
+        ]);
+    }
 }
