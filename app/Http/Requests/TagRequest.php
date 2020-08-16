@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use App\User;
 
 class TagRequest extends FormRequest
 {
@@ -13,7 +15,7 @@ class TagRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +25,36 @@ class TagRequest extends FormRequest
      */
     public function rules()
     {
+        $unique = function($attribute, $value, $fail) {
+            if(User::find($this->user_id)->tags()->where('tags.name', $value)->exists()){
+                $fail('そのタグ名は既に存在します。');
+            }
+        };
+        
         return [
-            //
+            'name' => [
+                'required',
+                'max:15',
+                $unique,
+            ],
         ];
+    }
+    
+    public function messages()
+    {
+        return [
+            'name.required' => 'タグ名を入力してください。',
+            'name.max' => 'タグ名は15文字以下で入力してください。',
+        ];
+    }
+    
+    protected function prepareForValidation()
+    {
+        //$requestにuser_idをいれ、バリデーションが有効となるようにする。
+        $this->merge(array( 'user_id' => $this->user()->id ));
+        
+        //$requestにidをいれ、upadteの際自身のレコードを無視するようにする。
+        //rules() の ignore($this->input('id')) の部分。
+        $this->merge(array( 'id' => $this->stulog ));
     }
 }

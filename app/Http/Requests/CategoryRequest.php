@@ -33,7 +33,6 @@ class CategoryRequest extends FormRequest
                 'max:15',
             ],
         ];
-        
     }
     
     public function messages()
