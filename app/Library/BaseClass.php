@@ -11,7 +11,7 @@ class BaseClass
     }
     
     public static function time_hhmm_to_japanese($time) {
-        $time = self::time_hhmm_to_double($time);
+        $time = round(self::time_hhmm_to_double($time),6);
         $H = floor($time);
         $M = round(($time - floor($time)) * 60);
         $studyTime =  $H . '時間' . $M . '分';
