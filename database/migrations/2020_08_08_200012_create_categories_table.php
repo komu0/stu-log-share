@@ -17,9 +17,10 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('user_id');
             $table->string('name');
+            $table->unsignedInteger('order')->default(1);
             $table->timestamps();
             
-            $table->unique(['user_id', 'name'],'unique_user_id_name'); 
+            $table->unique(['user_id', 'name'],'unique_user_id_name');
             // 外部キー制約
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

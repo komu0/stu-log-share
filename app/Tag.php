@@ -10,7 +10,7 @@ class Tag extends Model
     //createするときはcategoryから
     protected $fillable = [
         'name',
-        'user_id',
+        'order',
     ];
     
     public function user()

@@ -10,6 +10,7 @@ class Category extends Model
     // createするときはuserから。
     protected $fillable = [
         'name',
+        'order',
     ];
     
     public function user()
