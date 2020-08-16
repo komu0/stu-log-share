@@ -20,7 +20,7 @@ class Category extends Model
     
     public function tags()
     {
-        return $this->hasMany(Tag::class);
+        return $this->hasMany(Tag::class)->orderBy('order');
     }
     
     public function study_time()

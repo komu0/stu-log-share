@@ -30,12 +30,12 @@ class Stulog extends Model
     
     public function contents()
     {
-        return $this->hasMany(StulogContent::class);
+        return $this->hasMany(StulogContent::class)->join('tags', 'stulog_contents.tag_id', '=', 'tags.id')->orderBy('order');
     }
     
     public function tags()
     {
-        return $this->hasMany(StulogContent::class);
+        return $this->hasMany(StulogContent::class)->orderBy('order');
     }
     
     public function study_time()

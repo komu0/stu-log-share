@@ -182,12 +182,12 @@ class User extends Authenticatable
     
     public function tags()
     {
-        return $this->hasManyThrough(Tag::class, Category::class);
+        return $this->hasManyThrough(Tag::class, Category::class)->orderBy('order');
     }
     
     public function categories()
     {
-        return $this->hasMany(Category::class);
+        return $this->hasMany(Category::class)->orderBy('order');
     }
     
     public function starting_study_day()
