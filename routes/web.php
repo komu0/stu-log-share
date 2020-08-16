@@ -32,6 +32,7 @@ Route::resource('users', 'UsersController', ['only' => ['show']]);
 
 Route::group(['middleware' => ['auth']], function () {;
     Route::resource('stulogs', 'StulogsController', ['only' => ['create', 'edit', 'store', 'update', 'destroy']]);
+    Route::resource('categories', 'CategoriesController', ['only' => ['store']]);
     Route::get('timeline', 'TimelineController@index')->name('timeline');
     Route::get('setting', 'SettingController@index')->name('setting');
     Route::get('setting/tags', 'SettingController@tags')->name('setting.tags');
