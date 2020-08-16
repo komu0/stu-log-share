@@ -19,8 +19,7 @@ class CategoriesController extends Controller
     }
     
     public function updateOrder(CategoryOrderRequest $request)
-    {   
-        $user = \Auth::user();
+    {
         foreach ($request->order as $id => $order) {
             Category::find($id)->update([
                 'order' => $order,
