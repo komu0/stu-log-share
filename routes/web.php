@@ -43,6 +43,11 @@ Route::group(['middleware' => ['auth']], function () {;
     Route::put('profile/update', 'UsersController@profileUpdate')->name('profile.update');
     Route::put('password/update', 'UsersController@passwordUpdate')->name('password.update');
     
+    Route::group(['prefix' => 'categories/{id}'], function () {
+        Route::put('update/name', 'CategoriesController@updateName')->name('update.category.name');
+        Route::delete('destroy', 'CategoriesController@destroy')->name('category.destroy');
+    });
+    
     Route::group(['prefix' => 'users/{id}'], function () {
         Route::post('follow', 'UserFollowController@store')->name('user.follow');
         Route::delete('unfollow', 'UserFollowController@destroy')->name('user.unfollow');

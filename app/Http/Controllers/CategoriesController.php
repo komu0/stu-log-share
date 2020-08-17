@@ -27,4 +27,25 @@ class CategoriesController extends Controller
         }
         return redirect('setting/tags')->with('flash_message', '優先順位を変更しました。');
     }
+    
+    public function updateName(CategoryRequest $request, $id)
+    {
+        Category::find($id)->update([
+            'name' => $request->name,
+        ]);
+        return redirect('setting/tags')->with('flash_message', 'カテゴリ名を編集しました。');
+    }
+    
+    public function destroy($id)
+    {
+        $category = Category::find($id);
+        
+        if($category->tags()->exists()) {
+            return redirect('setting/tags')->with('flash_error_message', '既にスタログが投稿されているため削除できません。');
+        }
+        if ( \Auth::id() == $category->user->id ) {
+            $category->delete();
+        }
+        return redirect('setting/tags')->with('flash_message', 'カテゴリを削除しました。');
+    }
 }

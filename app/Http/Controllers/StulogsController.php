@@ -217,7 +217,7 @@ class StulogsController extends Controller
     {
         $stulog = Stulog::findOrFail($id);
         if ( \Auth::id() == $stulog->user_id ) {
-            Stulog::findOrFail($id)->delete();
+            $stulog->delete();
         }
         return redirect('/')->with('flash_message', 'スタログを削除しました。');
     }

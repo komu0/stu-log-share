@@ -37,5 +37,4 @@ class Category extends Model
     {
         return $this->hasManyThrough(StulogContent::class, Tag::class);
     }
-    
 }
