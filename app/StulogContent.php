@@ -21,7 +21,7 @@ class StulogContent extends Model
     
     public function tag()
     {
-        return $this->belongsTo(Tag::class)->orderBy('order');
+        return $this->belongsTo(Tag::class)->orderBy('tags.order');
     }
     
     public function display_study_time()
