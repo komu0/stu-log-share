@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body ml-2">
-                {!! Form::model($tag, ['route' => ['update.tag.name', $tag->id], 'method' => 'put']) !!}
+                {!! Form::open( ['route' => ['update.tag.name', $tag->id], 'method' => 'put']) !!}
                 <div class="row">
                     <div class="form-group">
                         {!! Form::text("name", $tag->name, ['class' => 'form-control']) !!}
@@ -23,6 +23,15 @@
                         </button>
                         @include ('modal.check_delete_tag')
                     </div>
+                </div>
+                <div class="row">
+                    <div class="form-group d-flex align-items-center">
+                        {!! Form::select("category_name", $tag-> movable_category_names(), ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group d-flex align-items-center ml-2">
+                        {!! Form::submit('カテゴリの変更', ['class' => 'btn btn-primary']) !!}
+                    </div>
+                    {!! Form::close() !!}
                 </div>
             </div>
             <div class="modal-footer">

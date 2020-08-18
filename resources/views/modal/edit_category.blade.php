@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body ml-2">
-                {!! Form::model($category, ['route' => ['update.category.name', $category->id], 'method' => 'put']) !!}
+                {!! Form::open( ['route' => ['update.category.name', $category->id], 'method' => 'put']) !!}
                 <div class="row">
                     <div class="form-group">
                         {!! Form::text("name", $category->name, ['class' => 'form-control']) !!}
