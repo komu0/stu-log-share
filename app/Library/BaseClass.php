@@ -14,7 +14,7 @@ class BaseClass
         $time = round(self::time_hhmm_to_double($time),6);
         $H = floor($time);
         $M = round(($time - floor($time)) * 60);
-        $studyTime =  $H . '時間' . $M . '分';
+        $studyTime =  $H . '時間' . sprintf('%02d', $M) . '分';
         return $studyTime;
     }
     
@@ -26,7 +26,7 @@ class BaseClass
     public static function time_double_to_japanese($time) {
         $H = floor($time);
         $M = round(($time - floor($time)) * 60);
-        $studyTime =  $H . '時間' . $M . '分';
+        $studyTime =  $H . '時間' . sprintf('%02d', $M) . '分';
         return $studyTime;
     }
 }
