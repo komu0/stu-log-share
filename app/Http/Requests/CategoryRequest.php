@@ -50,7 +50,7 @@ class CategoryRequest extends FormRequest
         $this->merge(array( 'user_id' => $this->user()->id ));
         
         //$requestにidをいれ、upadteの際自身のレコードを無視するようにする。
-        //rules() の ignore($this->input('id')) の部分。
-        $this->merge(array( 'id' => $this->stulog ));
+        //rules() の ignore($this->input('id')) の部分
+        $this->merge(array( 'id' => $this->id ));
     }
 }

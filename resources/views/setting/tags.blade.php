@@ -31,7 +31,7 @@
         <br>
         @foreach ($category->tags as $j => $tag)
             <span>　　</span>
-            <button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target=#editTag{{$j}}>
+            <button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target=#editTag{{$i}}_{{$j}}>
                 {{$tag->name}}
             </button>
             @include ('modal.edit_tag')
