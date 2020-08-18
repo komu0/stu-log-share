@@ -15,7 +15,7 @@ class Tag extends Model
     
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->category->user();
     }
     
     public function category()

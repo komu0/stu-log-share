@@ -8,12 +8,12 @@
 
 @if (session('flash_message'))
     <div class="alert alert-success">
-        {!! nl2br(session('flash_message')) !!}
+        {!!nl2br(session('flash_message')) !!}
     </div>
 @endif
 
 @if (session('flash_error_message'))
-    <div class="alert alert-danger">
+    <li class="alert alert-danger"  role="alert">
         {{session('flash_error_message')}}
-    </div>
+    </li>
 @endif

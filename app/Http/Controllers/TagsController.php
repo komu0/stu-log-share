@@ -28,4 +28,25 @@ class TagsController extends Controller
         }
         return redirect('setting/tags')->with('flash_message', '優先順位を変更しました。');
     }
+    
+    public function updateName(TagRequest $request, $id)
+    {
+        Tag::find($id)->update([
+            'name' => $request->name,
+        ]);
+        return redirect('setting/tags')->with('flash_message', 'タグ名を編集しました。');
+    }
+    
+    public function destroy($id)
+    {
+        $tag = Tag::find($id);
+        
+        if($tag->stulog_contents()->exists()) {
+            return redirect('setting/tags')->with('flash_error_message', '既にスタログが投稿されているため削除できません。');
+        }
+        if ( \Auth::id() == $tag->user->id ) {
+            $tag->delete();
+        }
+        return redirect('setting/tags')->with('flash_message', 'タグを削除しました。');
+    }
 }

@@ -34,6 +34,7 @@
             <button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target=#editTag{{$j}}>
                 {{$tag->name}}
             </button>
+            @include ('modal.edit_tag')
             <br>
         @endforeach
     @endforeach

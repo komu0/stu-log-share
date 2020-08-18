@@ -40,7 +40,7 @@ class CategoriesController extends Controller
     {
         $category = Category::find($id);
         
-        if($category->tags()->exists()) {
+        if($category->stulog_contents()->exists()) {
             return redirect('setting/tags')->with('flash_error_message', '既にスタログが投稿されているため削除できません。');
         }
         if ( \Auth::id() == $category->user->id ) {

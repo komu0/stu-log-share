@@ -48,6 +48,11 @@ Route::group(['middleware' => ['auth']], function () {;
         Route::delete('destroy', 'CategoriesController@destroy')->name('category.destroy');
     });
     
+    Route::group(['prefix' => 'tags/{id}'], function () {
+        Route::put('update/name', 'TagsController@updateName')->name('update.tag.name');
+        Route::delete('destroy', 'TagsController@destroy')->name('tag.destroy');
+    });
+    
     Route::group(['prefix' => 'users/{id}'], function () {
         Route::post('follow', 'UserFollowController@store')->name('user.follow');
         Route::delete('unfollow', 'UserFollowController@destroy')->name('user.unfollow');
