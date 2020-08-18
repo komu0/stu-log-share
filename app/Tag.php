@@ -9,6 +9,7 @@ class Tag extends Model
 {
     //createするときはcategoryから
     protected $fillable = [
+        'category_id',
         'name',
         'order',
     ];
@@ -30,7 +31,7 @@ class Tag extends Model
         $array = $user->categories()->where('categories.id', '!=', $category_id)->get('categories.name')->toArray();
         $movable_categories_names = [];
         foreach ($array as  $name) {
-            $movable_categories_names[] = $name["name"];
+            $movable_categories_names[$name["name"]] = $name["name"];
         };
         return $movable_categories_names;
     }

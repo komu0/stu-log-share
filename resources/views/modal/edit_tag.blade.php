@@ -24,15 +24,18 @@
                         @include ('modal.check_delete_tag')
                     </div>
                 </div>
+                @if (count($tag-> movable_category_names()) > 0)
+                {!! Form::open( ['route' => ['update.tag.category', $tag->id], 'method' => 'put']) !!}
                 <div class="row">
                     <div class="form-group d-flex align-items-center">
-                        {!! Form::select("category_name", $tag-> movable_category_names(), ['class' => 'form-control']) !!}
+                        {!! Form::select("category_name", $tag->movable_category_names(), ['class' => 'form-control']) !!}
                     </div>
                     <div class="form-group d-flex align-items-center ml-2">
-                        {!! Form::submit('カテゴリの変更', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::submit('カテゴリの移動', ['class' => 'btn btn-primary']) !!}
                     </div>
                     {!! Form::close() !!}
                 </div>
+                @endif
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">キャンセル</button>

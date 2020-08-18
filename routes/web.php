@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth']], function () {;
     
     Route::group(['prefix' => 'tags/{id}'], function () {
         Route::put('update/name', 'TagsController@updateName')->name('update.tag.name');
+        Route::put('update/category', 'TagsController@updateCategory')->name('update.tag.category');
         Route::delete('destroy', 'TagsController@destroy')->name('tag.destroy');
     });
     

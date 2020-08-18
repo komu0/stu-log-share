@@ -49,4 +49,14 @@ class TagsController extends Controller
         }
         return redirect('setting/tags')->with('flash_message', 'タグを削除しました。');
     }
+    
+    public function updateCategory(Request $request, $id)
+    {
+        $user = \Auth::user();
+        $category_id = $user->categories()->where('name',$request->category_name)->first()->id;
+        Tag::find($id)->update([
+            'category_id' => $category_id,
+        ]);
+        return redirect('setting/tags')->with('flash_message', 'カテゴリを移動しました。');
+    }
 }
