@@ -31,7 +31,7 @@
                     @if (count($category->tags)>=2)
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target=#changeTagOrderOn{{$i}}>タグの表示順を変更</a>
                     @endif
-                    <a class="dropdown-item" href="#">名前の変更</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target=#changeCategoryName{{$i}}>名前の変更</a>
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target=#deleteCategory{{$i}}>削除</a>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                             <div class="dropdown-menu" x-placement="right-start" style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
                                 <a class="dropdown-item" href="#">カテゴリの移動</a>
                                 <a class="dropdown-item" href="#">名前の変更</a>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target=#deleteTag{{$i}}>削除</a>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target=#deleteTag{{$j}}>削除</a>
                             </div>
                         </div>
                     </li>
@@ -57,6 +57,7 @@
         </div>
         @include('modal.add_tag')
         @include('modal.change_tag_order')
+        @include('modal.change_category_name')
         @include('modal.check_delete_category')
         @endforeach
     </div>
@@ -90,7 +91,6 @@
         <button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target=#editCategory{{$i}}>
             {{$category->name}}
         </button>
-        @include ('modal.edit_category')
         <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=#addTagOn{{$i}}>
             タグの追加
         </button>
