@@ -46,10 +46,11 @@
                             <div class="dropdown-menu" x-placement="right-start" style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
                                 <a class="dropdown-item" href="#">カテゴリの移動</a>
                                 <a class="dropdown-item" href="#">名前の変更</a>
-                                <a class="dropdown-item" href="#">削除</a>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target=#deleteTag{{$i}}>削除</a>
                             </div>
                         </div>
                     </li>
+                    @include('modal.check_delete_tag')
                     @endforeach
                 </ul>
             </div>
