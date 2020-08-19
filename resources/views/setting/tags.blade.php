@@ -1,6 +1,70 @@
 @extends('layouts.app')
 @section('content')
 <h2>タグの管理</h2>
+<section class="mb-3 offset-3 col-sm-6 bg-light p-4"><big><big>
+    <a class="btn btn-outline-dark btn-sm" data-toggle="collapse" href="#collapseCategories" aria-expanded="true">
+    ▼
+    </a>
+    <div class="btn-group dropright">
+        <a href="#" data-toggle="dropdown">
+            {{$user->id}}
+        </a>
+        <div class="dropdown-menu" x-placement="right-start" style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
+            <a class="dropdown-item" href="#">カテゴリの追加</a>
+            <a class="dropdown-item" href="#">カテゴリの表示順を変更</a>
+        </div>
+    </div><br>
+    <div class="collapse show ml-4" id="collapseCategories">
+        @foreach ($user->categories as $i => $category)
+        <div>
+            <a class="btn btn-outline-dark btn-sm" data-toggle="collapse" href="#collapseTags{{$category->id}}" aria-expanded="true">
+            ▼
+            </a>
+            <div class="btn-group dropright">
+                <a href="#" data-toggle="dropdown">
+                    {{$category->name}}
+                </a>
+                <div class="dropdown-menu" x-placement="right-start" style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
+                    <a class="dropdown-item" href="#">名前の変更</a>
+                    <a class="dropdown-item" href="#">タグの追加</a>
+                    <a class="dropdown-item" href="#">タグの表示順を変更</a>
+                    <a class="dropdown-item" href="#">削除</a>
+                </div>
+            </div>
+            <div class="collapse show" id="collapseTags{{$category->id}}">
+                <ul>
+                    @foreach ($category->tags as $j => $tag)
+                    <li>
+                        <div class="btn-group dropright">
+                            <a href="#" data-toggle="dropdown">
+                                {{$tag->name}}
+                            </a>
+                            <div class="dropdown-menu" x-placement="right-start" style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                <a class="dropdown-item" href="#">カテゴリの移動</a>
+                                <a class="dropdown-item" href="#">名前の変更</a>
+                                <a class="dropdown-item" href="#">削除</a>
+                            </div>
+                        </div>
+                    </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</big></big></section>
+
+
+
+
+
+
+
+
+
+
+
+
 <section class="mb-3">
     <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#addCategory">
       カテゴリの追加
