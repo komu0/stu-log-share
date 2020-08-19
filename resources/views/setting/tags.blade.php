@@ -1,24 +1,26 @@
 @extends('layouts.app')
 @section('content')
 <h2>タグの管理</h2>
-<section class="mb-3 offset-3 col-sm-6 bg-light p-4"><big><big>
-    <a class="btn btn-outline-dark btn-sm" data-toggle="collapse" href="#collapseCategories" aria-expanded="true">
-    ▼
+<section class="mb-3 offset-3 col-sm-6 bg-light p-4">
+    <a data-toggle="collapse" href="#collapseCategories" aria-expanded="true">
+    <small>▼</small>
     </a>
     <div class="btn-group dropright">
         <a href="#" data-toggle="dropdown">
             {{$user->id}}
         </a>
         <div class="dropdown-menu" x-placement="right-start" style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
-            <a class="dropdown-item" href="#">カテゴリの追加</a>
-            <a class="dropdown-item" href="#">カテゴリの表示順を変更</a>
+            <a class="dropdown-item" data-toggle="modal" data-target="#addCategory">カテゴリの追加</a>
+            @if (count($user->categories)>=2)
+            <a class="dropdown-item" data-toggle="modal" data-target="#changeCategoryOrder">カテゴリの表示順を変更</a>
+            @endif
         </div>
     </div><br>
     <div class="collapse show ml-4" id="collapseCategories">
         @foreach ($user->categories as $i => $category)
         <div>
-            <a class="btn btn-outline-dark btn-sm" data-toggle="collapse" href="#collapseTags{{$category->id}}" aria-expanded="true">
-            ▼
+            <a data-toggle="collapse" href="#collapseTags{{$category->id}}" aria-expanded="true">
+            <small>▼</small>
             </a>
             <div class="btn-group dropright">
                 <a href="#" data-toggle="dropdown">
@@ -26,7 +28,7 @@
                 </a>
                 <div class="dropdown-menu" x-placement="right-start" style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
                     <a class="dropdown-item" href="#">名前の変更</a>
-                    <a class="dropdown-item" href="#">タグの追加</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target=#addTagOn{{$i}}>タグの追加</a>
                     <a class="dropdown-item" href="#">タグの表示順を変更</a>
                     <a class="dropdown-item" href="#">削除</a>
                 </div>
@@ -50,9 +52,12 @@
                 </ul>
             </div>
         </div>
+        @include ('modal.add_tag')
         @endforeach
     </div>
-</big></big></section>
+</section>
+@include('modal.add_category')
+@include('modal.change_category_order')
 
 
 
@@ -69,7 +74,6 @@
     <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#addCategory">
       カテゴリの追加
     </button>
-    @include('modal.add_category')
     @if (count($user->categories)>=2)
     <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#changeCategoryOrder">
       カテゴリ表示順の変更
@@ -85,7 +89,6 @@
         <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=#addTagOn{{$i}}>
             タグの追加
         </button>
-        @include ('modal.add_tag')
         @if (count($category->tags)>=2)
         <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=#changeTagOrderOn{{$i}}>
              タグ表示順の変更
