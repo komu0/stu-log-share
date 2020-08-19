@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body ml-2">
-                本当に削除しますか？
+                タグ「{{$tag->name}}」本当に削除しますか？
             </div>
             <div class="modal-footer">
                 {!! Form::model($tag, ['route' => ['tag.destroy',$tag->id], 'method' => 'delete']) !!}

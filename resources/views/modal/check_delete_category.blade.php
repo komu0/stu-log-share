@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body ml-2">
-                本当に削除しますか？
+                カテゴリ「{{$category->name}}」を本当に削除しますか？
             </div>
             <div class="modal-footer">
                 {!! Form::model($category, ['route' => ['category.destroy',$category->id], 'method' => 'delete']) !!}
