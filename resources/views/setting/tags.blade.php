@@ -32,7 +32,7 @@
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target=#changeTagOrderOn{{$i}}>タグの表示順を変更</a>
                     @endif
                     <a class="dropdown-item" href="#">名前の変更</a>
-                    <a class="dropdown-item" href="#">削除</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target=#deleteCategory{{$i}}>削除</a>
                 </div>
             </div>
             <div class="collapse show" id="collapseTags{{$category->id}}">
@@ -54,7 +54,9 @@
                 </ul>
             </div>
         </div>
-        @include ('modal.add_tag')
+        @include('modal.add_tag')
+        @include('modal.change_tag_order')
+        @include('modal.check_delete_category')
         @endforeach
     </div>
 </section>
@@ -95,7 +97,6 @@
         <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target=#changeTagOrderOn{{$i}}>
              タグ表示順の変更
         </button>
-        @include ('modal.change_tag_order')
         @endif
         <br>
         @foreach ($category->tags as $j => $tag)
