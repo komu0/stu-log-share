@@ -27,9 +27,11 @@
                     {{$category->name}}
                 </a>
                 <div class="dropdown-menu" x-placement="right-start" style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
-                    <a class="dropdown-item" href="#">名前の変更</a>
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target=#addTagOn{{$i}}>タグの追加</a>
-                    <a class="dropdown-item" href="#">タグの表示順を変更</a>
+                    @if (count($category->tags)>=2)
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target=#changeTagOrderOn{{$i}}>タグの表示順を変更</a>
+                    @endif
+                    <a class="dropdown-item" href="#">名前の変更</a>
                     <a class="dropdown-item" href="#">削除</a>
                 </div>
             </div>
