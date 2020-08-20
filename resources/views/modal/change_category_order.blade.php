@@ -2,7 +2,7 @@
      <div class="modal-dialog-centered modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">カテゴリの表示順を変更する</h5>
+                <h5 class="modal-title">カテゴリ表示順を変更する</h5>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -26,8 +26,8 @@
                 @endforeach
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">キャンセル</button>
-                {!! Form::submit('変更', ['class' => 'btn btn-primary btn-sm']) !!}
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                {!! Form::submit('変更', ['class' => 'btn btn-primary']) !!}
                 {!! Form::close() !!}
             </div>
         </div>
