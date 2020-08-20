@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <h2>タグの管理</h2>
-<section class="mb-3">
+<section class="mb-5 pb-5">
     <div>
         <a data-toggle="collapse" href="#collapseCategories" aria-expanded="true">
         <small>▼</small>
