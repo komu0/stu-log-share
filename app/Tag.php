@@ -51,4 +51,12 @@ class Tag extends Model
         return BaseClass::time_double_to_japanese($this->study_time());
     }
     
+    //dropdownのclassを返す
+    public function can_move_to_another_category()
+    {
+        if(count($this->movable_category_names())==0) {
+            return "disabled text-muted";
+        }
+        return "";
+    }
 }
