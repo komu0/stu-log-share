@@ -37,4 +37,13 @@ class Category extends Model
     {
         return $this->hasManyThrough(StulogContent::class, Tag::class);
     }
+    
+    //dropdownのclassを返す
+    public function can_change_tags_order()
+    {
+        if(count($this->tags)<=1) {
+            return "disabled text-muted";
+        }
+        return "";
+    }
 }

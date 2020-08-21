@@ -209,4 +209,13 @@ class User extends Authenticatable
     {
         return BaseClass::time_double_to_japanese($this->study_time());
     }
+    
+    //dropdownのclassを返す
+    public function can_change_categories_order()
+    {
+        if(count($this->categories)<=1) {
+            return "disabled text-muted";
+        }
+        return "";
+    }
 }

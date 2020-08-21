@@ -13,9 +13,7 @@
             <div class="dropdown-menu" x-placement="right-start" 
             style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
                 <a class="dropdown-item" data-toggle="modal" data-target="#addCategory">カテゴリの追加</a>
-                @if (count($user->categories)>=2)
-                <a class="dropdown-item" data-toggle="modal" data-target="#changeCategoryOrder">カテゴリの表示順を変更</a>
-                @endif
+                <a class="dropdown-item  {{$user->can_change_categories_order()}}" data-toggle="modal" data-target="#changeCategoryOrder">カテゴリの表示順を変更</a>
             </div>
         </div>
     </div>
@@ -32,9 +30,7 @@
                 <div class="dropdown-menu" x-placement="right-start" 
                 style="position: absolute; transform: translate3d(111px, 0px, 0px); top: 0px; left: 0px; will-change: transform;">
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target=#addTagOn{{$i}}>タグの追加</a>
-                    @if (count($category->tags)>=2)
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target=#changeTagOrderOn{{$i}}>タグの表示順を変更</a>
-                    @endif
+                    <a class="dropdown-item {{$category->can_change_tags_order()}}" href="#" data-toggle="modal" data-target=#changeTagOrderOn{{$i}}>タグの表示順を変更</a>
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target=#changeCategoryName{{$i}}>名前の変更</a>
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target=#deleteCategory{{$i}}>削除</a>
                 </div>
