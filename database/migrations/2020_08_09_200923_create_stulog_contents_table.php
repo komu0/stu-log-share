@@ -18,7 +18,7 @@ class CreateStulogContentsTable extends Migration
             $table->unsignedBigInteger('stulog_id');
             $table->unsignedBigInteger('tag_id');
             $table->double('study_time');
-            $table->string('comment')->nullable;
+            $table->string('comment')->nullable();
             $table->timestamps();
             
             $table->unique(['stulog_id', 'tag_id']); 
