@@ -45,5 +45,5 @@
     {!! Form::submit('投稿', ['class' => 'btn btn-primary btn-lg']) !!}
     {!! Form::close() !!}
   </div>
-</div>
+</div>  
 @endsection

@@ -8,8 +8,11 @@
                 </button>
             </div>
             <div class="modal-body ml-2">
-                本当に削除しますか？<br>
-                (既にスタログと関連しているカテゴリは削除できません。
+                カテゴリ「{{$category->name}}」本当に削除しますか？<br>
+                <small>
+                ※含まれるタグはすべて削除されます。<br>
+                ※含まれるタグが既にスタログと関連しているカテゴリは削除できません。
+                </small>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>    

@@ -8,7 +8,10 @@
                 </button>
             </div>
             <div class="modal-body ml-2">
-                タグ「{{$tag->name}}」を本当に削除しますか？
+                タグ「{{$tag->name}}」を本当に削除しますか？<br>
+                <small>
+                ※既にスタログと関連しているタグは削除できません。
+                </small>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
