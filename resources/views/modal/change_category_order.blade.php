@@ -15,7 +15,7 @@
                 </div>
                 @foreach ($user->categories as $category)
                 {!! Form::model($category, ['route' => 'update.category.order', 'method' => 'put']) !!}
-                <div class="row">
+                <div class="row mb-1">
                     <div class="d-flex align-items-end col-sm-3">
                         {!! Form::label("order[$category->id]", $category->name) !!}
                     </div>
