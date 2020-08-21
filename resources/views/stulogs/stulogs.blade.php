@@ -4,14 +4,14 @@
         <!--offset-1 col-10…グリッドシステム-->
         <!--bg-light…背景色-->
         <div class="p-2 mb-4 offset-1 col-10 bg-light border rounded">
-            <div class="d-sm-inline">
+            <div class="d-md-inline">
                 <span>ID:</span>
                 <span>{!! link_to_route('users.show', $stulog->user_id, ['user' => $stulog->user_id]) !!}</span>
                 <span> / </span>
                 <span>{{ $stulog->log_date->format('Y年m月d日') }}</span>
                 <span> / </span>
             </div>
-            <div class="d-sm-inline">
+            <div class="d-inline">
                 <span>勉強時間:</span> 
                 <span class="mr-3 font-weight-bold">{{ $stulog->display_study_time() }}</span>
             </div>
@@ -22,23 +22,21 @@
             @endif
             <div>
                 <div class="container mt-2 mb-2">
+                    <div class="mb-3">
                     @if ($stulog->contents != '')
-                        <table class="table table-sm  offset-1 col-10">
-                            <tbody>
                         @foreach ($stulog->contents as $content)
-                            <tr>
-                              <th width='20%'>{{ $content->tag->name }}</th>
-                              <td width='20%'>{{ $content->display_study_time() }}</td>
-                              <td>{{ $content->comment }}</td>
-                            </tr>
+                        <div class="row border-bottom">
+                            <div class="col-xl-2 col-md-3 font-weight-bold">{{ $content->tag->name }}</div>
+                            <div class="col-xl-2 col-md-3">{{ $content->display_study_time() }}</div>
+                            <div class="col-xl-8 col-md-6">{{ $content->comment }}</div><br>
+                        </div>
                         @endforeach
-                            </tbody>
-                        </table>
                     @endif
+                    </div>
                     @if ($stulog->thought != '')
                         <div class="row justify-content-center mb-1">
-                            <div class="p-2 col-1 border-left border-top border-bottom border-secondary d-flex align-items-center rounded-left">感想</div>
-                            <div class="p-2 col-9 border border-secondary d-flex align-items-center rounded-right">{!! nl2br(e($stulog->thought)) !!}</div>
+                            <div class="col-lg-1 col-sm-2 col-10 p-2 border border-secondary d-flex align-items-center">感想</div>
+                            <div class="col-lg-10 col-sm-9 col-10 p-2 border border-secondary d-flex align-items-center">{!! nl2br(e($stulog->thought)) !!}</div>
                         </div>
                     @endif
                 </div>
@@ -48,7 +46,9 @@
             </div>
         </div>
     @endforeach
-    {{ $stulogs->links() }}
+    <div class="d-flex justify-content-center">
+        {{ $stulogs->onEachSide(1)->links() }}
+    </div>
 @else
     <p class="text-center">表示できるスタログがありません。</p>
 @endif
