@@ -4,10 +4,12 @@
         <!--offset-1 col-10…グリッドシステム-->
         <!--bg-light…背景色-->
         <div class="p-2 mb-4 offset-1 col-10 bg-light border rounded">
-            <div class="d-md-inline">
+            <div class="d-sm-inline">
                 <span>ID:</span>
                 <span>{!! link_to_route('users.show', $stulog->user_id, ['user' => $stulog->user_id]) !!}</span>
                 <span> / </span>
+            </div>
+            <div class="d-sm-inline">
                 <span>{{ $stulog->log_date->format('Y年m月d日') }}</span>
                 <span> / </span>
             </div>
