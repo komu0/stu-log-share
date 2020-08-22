@@ -20,9 +20,9 @@
     </div>
 @else
     <div class="text-center">
-        <p class="h1">さあ、今すぐスタログシェアを始めましょう！</p>
-        {!! link_to_route('signup.get', '新規登録(無料)', [], ['class' => 'pt-1 pb-1 offset-4 col-4 btn-lg btn btn-block btn-primary']) !!}
-        {!! link_to_route('login', 'ログイン', [], ['class' => 'pt-1 pb-1 offset-4 col-4 btn-lg btn btn-block btn-light']) !!}
+        <p class="h1 mb-3">さあ、今すぐ<br> スタログシェアを始めましょう！</p>
+        {!! link_to_route('signup.get', '新規登録(無料)', [], ['class' => 'pt-1 pb-1 btn-lg col-el-2 btn btn-block btn-primary']) !!}
+        {!! link_to_route('login', 'ログイン', [], ['class' => 'pt-1 pb-1 btn-lg btn btn-block btn-light']) !!}
     </div>
 @endif
 </div>

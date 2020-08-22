@@ -1,9 +1,10 @@
 @extends('layouts.app')
 @section('content')
+<div class="mb-4 col-12">
   <h1 class="mb-3">ログを投稿</h1>
   {!! Form::model($stulog, ['route' => 'stulogs.store']) !!}
   <div class="mb-3">
-    <div class="row col-12">
+    <div class="row">
       <div class="d-flex align-items-end">
         {!! Form::label('log_date', '日付:') !!}
       </div>
@@ -40,7 +41,7 @@
       </div>
     </div>
     <!--sm未満のデザイン-->
-    <div class="col-12 d-sm-none pb-2 border-bottom">
+    <div class="d-sm-none pb-2 border-bottom">
       <div>
         {!! Form::label(sprintf('%02d',$i + 1)) !!}
       </div>
@@ -71,11 +72,11 @@
     </div>
     @endforeach
   </div>
-  <div class="mb-3 col-12">
+  <div class="row mb-3">
     {!! Form::label('thought', '感想') !!}
     {!! Form::textarea('thought', null, ['class' => 'form-control']) !!}
   </div>
-  <div class="row col-12">
+  <div class="row">
     {!! Form::submit('編集', ['class' => 'btn btn-primary btn-lg']) !!}
     {!! Form::close() !!}
     <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#deleteModal">
