@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
-<h1 class="mb-4">{!! link_to_route('users.show', $user->id, ['user' => $user->id]) !!}さんの分析ページ</h1>
+<h2 class="mb-4">{!! link_to_route('users.show', $user->id, ['user' => $user->id]) !!}さんの分析ページ</h2>
 <section class="mb-3">
-    <h2>勉強時間内訳</h2>
+    <h3>勉強時間内訳</h3>
     <div>
         <a data-toggle="collapse" href="#collapseCategories" aria-expanded="true">
         <small>▼</small>
@@ -28,7 +28,7 @@
     </div>
 </section>
 <section class="mb-3">
-    <h2>勉強時間推移</h2>
+    <h3>勉強時間推移</h3>
     <p>最終的にはグラフを書く</p>
     <div class="row">
     @foreach ($timeTransArray as $name=>$timeTrans)

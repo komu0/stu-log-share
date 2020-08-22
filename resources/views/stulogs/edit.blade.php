@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="mb-4 col-12">
-  <h1 class="mb-3">ログを編集</h1>
+  <h2 class="mb-3">ログを編集</h2>
   {!! Form::model($stulog, ['route' => ['stulogs.update', $stulog->id], 'method' => 'put']) !!}
   <div class="mb-3">
     <div class="row">
