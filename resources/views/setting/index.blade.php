@@ -22,20 +22,34 @@
         <div class="card">
             <div class="card-header">パスワード変更</div>
             <div class="card-body">
-                {!! Form::open(['route' => ['password.update'], 'method' => 'put']) !!}
-                    <div class="form-group">
-                        {!! Form::label('current-password', '現在のパスワード：') !!}
-                        {!! Form::password('current-password', null, ['class' => 'form-control']) !!}
+                <div class="mb-3">
+                    {!! Form::open(['route' => ['password.update'], 'method' => 'put']) !!}
+                    <div class="row d-flex align-items-center">
+                        <div class="col-xl-4 col-lg-5 col-md-6 col-12 pr-0">
+                            現在のパスワード：
+                        </div>
+                        <div class="col-6">
+                            {!! Form::password('current-password', null, ['class' => 'form-control']) !!}
+                        </div>
                     </div>
-                    <div class="form-group">
-                        {!! Form::label('password', '新しいパスワード：') !!}
-                        {!! Form::password('password', null, ['class' => 'form-control']) !!}
+                    <div class="row d-flex align-items-center">
+                        <div class="col-xl-4 col-lg-5 col-md-6 col-12 pr-0">
+                            新しいパスワード：
+                        </div>
+                        <div class="col-6">
+                            {!! Form::password('password', null, ['class' => 'form-control']) !!}
+                        </div>
                     </div>
-                    <div class="form-group">
-                        {!! Form::label('password_confirmation', '新しいパスワード(確認)：') !!}
-                        {!! Form::password('password_confirmation', null, ['class' => 'form-control']) !!}
+                    <div class="row d-flex align-items-center">
+                        <div class="col-xl-4 col-lg-5 col-md-6 col-12 pr-0">
+                            新しいパスワード(確認)：
+                        </div>
+                        <div class="col-6">
+                            {!! Form::password('password_confirmation', null, ['class' => 'form-control']) !!}
+                        </div>
                     </div>
-                    {!! Form::submit('変更', ['class' => 'btn btn-primary']) !!}
+                </div>
+                {!! Form::submit('変更', ['class' => 'btn btn-primary']) !!}
                 {!! Form::close() !!}
             </div>
         </div>
@@ -46,9 +60,11 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-header">その他の設定</div>
-            <div class="card-body">
-                {!! link_to_route('user.mutings', 'ミュート中のユーザ管理', [], ['class' => 'h-auto btn btn-lg btn-primary']) !!}
-                {!! link_to_route('setting.tags', 'タグの管理', [], ['class' => 'h-auto btn btn-lg btn-primary']) !!}
+            <div class="card-body pb-1">
+                <ul>
+                    <li>{!! link_to_route('user.mutings', 'ミュート中のユーザ管理', []) !!}</li>
+                    <li>{!! link_to_route('setting.tags', 'タグの管理', [],) !!}</li>
+                </ul>
             </div>
         </div>
     </div>

@@ -15,6 +15,5 @@
         @include('user_follow.follow_button')
         @include('user_mute.mute_button')
     </div>
-    <h2>ログ</h2>
     @include('stulogs.stulogs')
 @endsection
