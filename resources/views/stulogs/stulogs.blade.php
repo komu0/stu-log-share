@@ -1,8 +1,5 @@
 @if (count($stulogs) > 0)
     @foreach ($stulogs as $stulog)
-        <!--mb-4…スタログ間の間隔-->
-        <!--offset-1 col-10…グリッドシステム-->
-        <!--bg-light…背景色-->
         <div class="p-2 mb-4 offset-1 col-10 bg-light border rounded">
             <div class="d-sm-inline">
                 <span>ID:</span>

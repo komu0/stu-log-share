@@ -1,8 +1,8 @@
 @if (count($users) > 0)
     @foreach ($users as $user)
-        <div class="mb-4 offset-1 col-10 p-2 border border-primary rounded">
-            <div class="row">
-                <div class="d-flex align-items-center col-9">
+        <div class="mb-4 offset-1 col-10 border rounded">
+            <div class="row p-2">
+                <div class="d-flex align-items-center col-xl-9 col-lg-8 col-md-7">
                     <span>ID:
                     {!! link_to_route('users.show', $user->id, ['user' => $user->id]) !!}
                     @if ($user->profile)
@@ -10,7 +10,7 @@
                     @endif
                     </span>
                 </div>
-                <div class="row w-25 d-flex justify-content-end">
+                <div class="col-xl-3 col-lg-4 col-md-5 d-flex justify-content-end">
                     @if (Auth::check())
                         @if (\Auth::user()->mutings()->where('mute_id', $user->id)->exists())
                             <div class="d-flex align-items-center">

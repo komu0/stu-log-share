@@ -19,7 +19,7 @@
         <div class="d-flex align-items-end">##</div>
         <div class="col-lg-2 col-sm-3 col-5">タグ</div>
         <div class="col-lg-2 col-sm-3 col-5">勉強時間</div>
-        <div class="col-7 col-sm-5 col-11">内容</div>
+        <div class="col-lg-7 col-sm-5 col-11">内容</div>
       </div>
     </div>
     @foreach($contentsArray as $i => $content)
@@ -35,7 +35,7 @@
         <div class="col-lg-2 col-sm-3 col-5">
             {!! Form::time("contentsArray[$i][勉強時間]", old($contentsArray[$i]['勉強時間'],$contentsArray[$i]['勉強時間']), ['class' => 'form-control']) !!}
         </div>
-        <div class="col-7 col-sm-5 col-11">
+        <div class="col-lg-7 col-sm-5 col-11">
             {!! Form::text("contentsArray[$i][内容]", old($contentsArray[$i]['内容'],$contentsArray[$i]['内容']), ['class' => 'form-control']) !!}
         </div>
       </div>
