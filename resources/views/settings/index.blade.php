@@ -63,7 +63,7 @@
             <div class="card-body pb-1">
                 <ul>
                     <li>{!! link_to_route('user.mutings', 'ミュート中のユーザ管理', []) !!}</li>
-                    <li>{!! link_to_route('setting.tags', 'タグの管理', [],) !!}</li>
+                    <li>{!! link_to_route('settings.tags', 'タグの管理', [],) !!}</li>
                 </ul>
             </div>
         </div>

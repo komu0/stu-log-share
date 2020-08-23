@@ -16,7 +16,7 @@
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->id }}</a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li class="dropdown-item">{!! link_to_route('users.show', 'マイページ', ['user' => Auth::user()->id]) !!}</li>
-                        <li class="dropdown-item">{!! link_to_route('setting', '設定',) !!}</li>
+                        <li class="dropdown-item">{!! link_to_route('settings', '設定',) !!}</li>
                         <li class="dropdown-divider"></li>
                         <li class="dropdown-item">{!! link_to_route('about', 'スタログシェアとは？',) !!}</li>
                         <li class="dropdown-divider"></li>

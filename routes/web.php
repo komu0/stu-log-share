@@ -34,12 +34,12 @@ Route::group(['middleware' => ['auth']], function () {;
     Route::resource('stulogs', 'StulogsController', ['only' => ['create', 'edit', 'store', 'update', 'destroy']]);
     Route::resource('categories', 'CategoriesController', ['only' => ['store']]);
     Route::post('tags/store/on/{id}', 'TagsController@store')->name('tags.store');
-    Route::put('setting/update/categories-order', 'CategoriesController@updateOrder')->name('update.category.order');
-    Route::put('setting/update/tags-order', 'TagsController@updateOrder')->name('update.tag.order');
+    Route::put('settings/update/categories-order', 'CategoriesController@updateOrder')->name('update.category.order');
+    Route::put('settings/update/tags-order', 'TagsController@updateOrder')->name('update.tag.order');
     Route::get('timeline', 'TimelineController@index')->name('timeline');
-    Route::get('setting', 'SettingController@index')->name('setting');
-    Route::get('setting/tags', 'SettingController@tags')->name('setting.tags');
-    Route::get('setting/mutings', 'UsersController@mutings')->name('user.mutings');
+    Route::get('settings', 'SettingsController@index')->name('settings');
+    Route::get('settings/tags', 'SettingsController@tags')->name('settings.tags');
+    Route::get('settings/mutings', 'UsersController@mutings')->name('user.mutings');
     Route::put('profile/update', 'UsersController@profileUpdate')->name('profile.update');
     Route::put('password/update', 'UsersController@passwordUpdate')->name('password.update');
     
