@@ -1,13 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2 class="mb-4">{{$user->id}}さんのユーザページ</h2>
+    <h2 class="mb-4">
+        {{$user->id}}さんのユーザページ
+        {!! link_to_route('analyze', '分析', ['id' => $user->id], ['class' => 'h-auto btn btn-sm btn-success']) !!}
+    </h2>
     <div>
         <div class="d-block d-sm-inline">
             ID:{{ $user->id }} / 開始日:{{ $user->created_at->format('Y年m月d日') }} / 
         </div>
         <div class="d-block d-sm-inline">
-            総勉強時間:{!! link_to_route('analyze', $user->display_study_time(), ['id' => $user->id]) !!}
+            総勉強時間:{{ $user->display_study_time() }}
         </div>
     </div>
     <div class="d-sm-inline">
