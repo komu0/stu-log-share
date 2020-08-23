@@ -7,38 +7,11 @@ use App\User;
 
 class AnalyzeController extends Controller
 {
+    //timeTransArrayについて
+    //総勉強時間
     public function index($id)
     {
         $user = User::findOrFail($id);
-        
-        // これは良いけど他もまとめて出したいので却下
-        // $wholeStudyTime = 0;
-        // foreach($user->stulogs as $stulog){
-        //     $date = date('m月d日',strtotime($stulog->log_date));
-        //     $wholeStudyTime += $stulog->study_time();
-        //     $wholeStudyTimeArray[] = ['date'=>$date, 'time'=>$wholeStudyTime];
-        // }
-        
-        // こうするとカテゴリーが出すのが難しいのでボツ
-        // foreach($user->categories as $category) {
-        //     $categoryTime = 0;
-        //     $categoryStudyTimeArray = [];
-        //     foreach($category->tags as $tag) {
-        //         $time = 0;
-        //         $tagStudyTimeArray = [];
-        //         foreach($tag->stulog_contents as $content){
-        //             $date = date('m月d日',strtotime($content->stulog->log_date));
-        //             $time += $content->study_time;
-        //             $tagStudyTimeArray[$date] = $time;
-        //         }
-        //         $wholeTagStudyTimeArray[$tag->name] = [$tagStudyTimeArray];
-        //     }
-        //     $wholeCategoryStudyTimeArray[$category->name] = [$categoryStudyTimeArray];
-        // }
-        
-        //$stulogで回すのは確定(log_dateを通して1回だけ回す)
-        //計算に使う$timeと
-        //表示に使う$timeTransArrayを定義
         $time['総勉強時間'] = 0; 
         $timeTransArray['総勉強時間'] = [];
         foreach ($user->tags as $tag) {
@@ -70,7 +43,7 @@ class AnalyzeController extends Controller
                 $timeTransArray[$category->name][$log_date] = $time[$category->name];
             }
         }
-        
+        dd($timeTransArray);
         return view('analyze.index', [
             'user' => $user,
             'timeTransArray' => $timeTransArray,
