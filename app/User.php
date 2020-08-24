@@ -218,4 +218,21 @@ class User extends Authenticatable
         }
         return "";
     }
+    
+    public function time_trans_array()
+    {
+        $firstLogDate = strToTime(date($this->stulogs()->orderBy('log_date')->first()->log_date));
+        $startDate = strToTime('-1 day', $firstLogDate);
+        $today = strToTime(date('Y-m-d'));
+        $time_trans_array = [];
+        $time = 0;
+        for($date =$startDate; $date <= $today; $date = strToTime('+1 day', $date)){
+            $display_date = date('Y年m月d日', $date);
+            if($this->stulogs()->where('log_date', date('Y-m-d', $date))->exists()){
+                $time += $this->stulogs()->where('log_date', date('Y-m-d',$date))->first()->study_time();
+            }
+            $time_trans_array[$display_date] = $time;
+        }
+        return $time_trans_array;
+    }
 }

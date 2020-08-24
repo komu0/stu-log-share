@@ -35,7 +35,24 @@ class Category extends Model
     
     public function stulog_contents()
     {
-        return $this->hasManyThrough(StulogContent::class, Tag::class);
+        return $this->hasManyThrough(StulogContent::class, Tag::class)->join('stulogs', 'stulog_contents.stulog_id', '=', 'stulogs.id')->select('stulog_contents.*','log_date')->orderBy('log_date');
+    }
+    
+    public function time_trans_array()
+    {
+        $firstLogDate = strToTime(date($this->stulog_contents()->orderBy('log_date')->first()->log_date));
+        $startDate = strToTime('-1 day', $firstLogDate);
+        $today = strToTime(date('Y-m-d'));
+        $time_trans_array = [];
+        $time = 0;
+        for($date =$startDate; $date <= $today; $date = strToTime('+1 day', $date)){
+            $display_date = date('Y年m月d日', $date);
+            if($this->stulog_contents()->where('log_date', date('Y-m-d', $date))->exists()){
+                $time += $this->stulog_contents()->where('log_date', date('Y-m-d',$date))->first()->study_time;
+            }
+            $time_trans_array[$display_date] = $time;
+        }
+        return $time_trans_array;
     }
     
     //dropdownのclassを返す
