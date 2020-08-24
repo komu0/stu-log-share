@@ -21,15 +21,28 @@ class ImageUpdateRequest extends FormRequest
      *
      * @return array
      */
+     
     public function rules()
     {
+        $dimensions = function($attribute, $value, $fail) {
+            $messages = [];
+            foreach ($value as $key => $content) {
+                if (mb_strlen(preg_replace("/\r\n/", "", $content['内容'])) > 100){
+                    $messages[] = ('[' . ($key + 1) . '-内容]は100字以下で入力してください。');
+                }
+            }
+            if($messages) {
+                $fail($messages);
+            }
+        };
+        
         return [
             'file' => [
                 'required',
                 'file',
                 'image',
                 'mimes:jpeg,png',
-                'dimensions:min_width=120,min_height=120,max_width=400,max_height=400',
+                $dimensions,
             ]
         ];
     }
