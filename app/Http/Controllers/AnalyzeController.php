@@ -43,7 +43,6 @@ class AnalyzeController extends Controller
                 $timeTransArray[$category->name][$log_date] = $time[$category->name];
             }
         }
-        dd($timeTransArray);
         return view('analyze.index', [
             'user' => $user,
             'timeTransArray' => $timeTransArray,

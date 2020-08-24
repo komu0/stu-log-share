@@ -42,6 +42,7 @@ Route::group(['middleware' => ['auth']], function () {;
     Route::get('settings/mutings', 'UsersController@mutings')->name('user.mutings');
     Route::put('profile/update', 'UsersController@profileUpdate')->name('profile.update');
     Route::put('password/update', 'UsersController@passwordUpdate')->name('password.update');
+    Route::put('image/update', 'UsersController@imageUpdate')->name('image.update');
     
     Route::group(['prefix' => 'categories/{id}'], function () {
         Route::put('update/name', 'CategoriesController@updateName')->name('update.category.name');

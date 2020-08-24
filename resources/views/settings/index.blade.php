@@ -59,6 +59,27 @@
 <div class="row justify-content-center mb-5">
     <div class="col-md-8">
         <div class="card">
+            <div class="card-header">プロフィール画像の変更</div>
+            <div class="card-body">
+                <div class="form-group">
+                {!! Form::open(['route' => ['image.update'], 'method' => 'put', 'files' => true]) !!}
+                    <p>
+                        <img src="{{ asset('storage/avatar/' . $user->image_path) }}" alt="avatar_image" />
+                    </p>
+                    {!! Form::file('file',['class' => 'mb-3']) !!}
+                    <div class="form-group">
+                        {!! Form::submit('アップロード', ['class' => 'btn btn-primary']) !!}
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center mb-5">
+    <div class="col-md-8">
+        <div class="card">
             <div class="card-header">その他の設定</div>
             <div class="card-body pb-1">
                 <ul>

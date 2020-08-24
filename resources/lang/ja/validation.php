@@ -152,7 +152,8 @@ return [
         'study_time' => '勉強時間',
         'content' => '内容',
         'thought' => '感想',
-        'current-password' => '現在のパスワード'
+        'current-password' => '現在のパスワード',
+        'file' => '画像'
     ],
 
 ];

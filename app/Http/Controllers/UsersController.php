@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests\PasswordUpdateRequest;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Requests\ImageUpdateRequest;
 
 class UsersController extends Controller
 {
@@ -89,5 +90,36 @@ class UsersController extends Controller
         ]);
 
         return back()->with('flash_message', 'パスワードを変更しました。');
+    }
+    
+    public function imageUpdate(ImageUpdateRequest $request)
+    {
+        $this->validate($request, [
+            'file' => [
+                'required',
+                'file',
+                'image',
+                'mimes:jpeg,png',
+                'dimensions:min_width=120,min_height=120,max_width=400,max_height=400',
+            ],
+            [
+                'file.required' => 'aaaaaaaaaaa',
+            ]
+        ]);
+
+        if ($request->file('file')->isValid([])) {
+            $filename = $request->file->store('public/avatar');
+            
+            $user = User::find(auth()->id());
+            $user->image_path = basename($filename);
+            $user->save();
+
+            return back()->with('flash_message', 'プロフィール画像を更新しました。');
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors(['file' => '画像がアップロードされていないか不正なデータです。']);
+        }
     }
 }
