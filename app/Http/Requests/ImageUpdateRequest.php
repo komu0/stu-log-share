@@ -42,7 +42,6 @@ class ImageUpdateRequest extends FormRequest
                 'file',
                 'image',
                 'mimes:jpeg,png',
-                $dimensions,
             ]
         ];
     }

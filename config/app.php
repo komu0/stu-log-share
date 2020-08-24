@@ -164,6 +164,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class, //追加
 
         /*
          * Package Service Providers...
@@ -230,6 +231,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         
         'BaseClass' => 'app\Library\BaseClass', // 追加
+        'InterventionImage' => Intervention\Image\Facades\Image::class,　//追加
     ],
 
 ];

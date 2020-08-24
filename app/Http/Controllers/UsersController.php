@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use InterventionImage;
 use App\User;
 use App\Http\Requests\PasswordUpdateRequest;
 use App\Http\Requests\ProfileUpdateRequest;
@@ -94,12 +95,18 @@ class UsersController extends Controller
     
     public function imageUpdate(ImageUpdateRequest $request)
     {
-        dd($request->file->width());
-        $filename = $request->file->store('public/avatar');
+        $file = $request->file;
+        $extension = '.' . substr($file->getClientMimeType(),6);
         $user = User::find(auth()->id());
-        $user->image_path = basename($filename);
+        $name = 'profile_image' . date('YmdHis') . $extension;
+        $path = public_path('storage/avatar/' . $user->id);
+        if(!\File::exists($path)) {
+            \File::makeDirectory($path);
+        }
+        InterventionImage::make($file)->resize(350, 350)->save($path . '/' . $name);
+        $user->image_path = $user->id . '/' . $name;
         $user->save();
-
+        
         return back()->with('flash_message', 'プロフィール画像を更新しました。');
     }
 }
