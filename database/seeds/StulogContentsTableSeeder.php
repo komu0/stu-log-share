@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Stulog;
 
 class StulogContentsTableSeeder extends Seeder
 {
@@ -20,7 +21,7 @@ class StulogContentsTableSeeder extends Seeder
             $tags = $user->tags()->get();
             
             foreach($tags as $tag) {
-                if(rand(1,3) <=2 ){
+                if(rand(1,3) <=1 ){
                     $tag_id = $tag->id;
                     $study_time = rand(1,8) * 0.25;
                     if( $tag->category->name == '習い事') {
@@ -46,5 +47,13 @@ class StulogContentsTableSeeder extends Seeder
                 }
             }
         }
+        
+        foreach(Stulog::all() as $stulog) {
+            if(count($stulog->contents)){
+                continue;
+            } else {
+                $stulog->delete();
+            }
+        }   
     }
 }
