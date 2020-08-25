@@ -13,9 +13,9 @@ class CategoriesTableSeeder extends Seeder
     {
         $categories = 
             [ 
+                "五教科"=>["国語", "数学", "英語", "理科", "社会"],
                 "プログラミング"=>["PHP", "Ruby", "HTML&CSS",],
                 "習い事"=>["ピアノ", "バイオリン", "水泳", "習字"],
-                "五教科"=>["国語", "数学", "英語", "理科", "社会"],
                 "未設定"=>["片付け", "書類整理", "瞑想"],
             ];
         
@@ -29,7 +29,7 @@ class CategoriesTableSeeder extends Seeder
             
             for($categoryIndex = 0; $categoryIndex < count($categories); $categoryIndex++){
                 //カテゴリーを追加するかどうかの判定
-                if (rand(1,3) <= 2) {
+                if (rand(1,4) <= 3) {
                     $category_name = array_keys($categories)[$categoryIndex];
                     
                     DB::table('categories')->insert([
@@ -37,6 +37,7 @@ class CategoriesTableSeeder extends Seeder
                         'name' => $category_name,
                         'created_at' => $created_at,
                         'updated_at' => $updated_at,
+                        'order' => $categoryIndex,
                     ]);
                     $category_id += 1;
                     
@@ -49,6 +50,7 @@ class CategoriesTableSeeder extends Seeder
                                 'name' => $tag_name,
                                 'created_at' => $created_at,
                                 'updated_at' => $updated_at,
+                                'order' => $categoryIndex * 100 + $tagIndex,
                             ]);
                         }
                     }

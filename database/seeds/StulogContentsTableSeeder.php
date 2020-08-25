@@ -20,7 +20,7 @@ class StulogContentsTableSeeder extends Seeder
             $tags = $user->tags()->get();
             
             foreach($tags as $tag) {
-                if(rand(2,3) <=2 ){
+                if(rand(1,3) <=2 ){
                     $tag_id = $tag->id;
                     $study_time = rand(1,8) * 0.25;
                     if( $tag->category->name == '習い事') {
