@@ -103,7 +103,7 @@ class UsersController extends Controller
         if(!\File::exists($path)) {
             \File::makeDirectory($path);
         }
-        InterventionImage::make($file)->resize(350, 350)->save($path . '/' . $name);
+        InterventionImage::make($file)->fit(256, 256)->save($path . '/' . $name);
         $user->image_path = $user->id . '/' . $name;
         $user->save();
         

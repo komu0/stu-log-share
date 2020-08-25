@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
                 'profile' => $i . '番目のテストユーザです。よろしくお願いします。',
                 'created_at' => '2020-07-01 00:00:00',
                 'updated_at' => '2020-07-01 00:00:00',
+                'image_path' => 'testkun' . $i . '_init.png'
             ]);
         }
     }
