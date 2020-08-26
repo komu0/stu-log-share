@@ -233,5 +233,4 @@ return [
         'BaseClass' => 'app\Library\BaseClass', // 追加
         'InterventionImage' => Intervention\Image\Facades\Image::class,　//追加
     ],
-
 ];

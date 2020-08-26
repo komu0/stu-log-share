@@ -26,7 +26,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-2 col-sm-4 col-5">
-                        <img class="img-fluid" src="{{ asset('storage/avatar/' . $stulog->user->image_path) }}" alt="avatar_image" />
+                        <img class="img-fluid" src="{{ Storage::disk('s3')->url($stulog->user->image_path) }}" alt="avatar_image" />
                     </div>
                     <div class="col-md-10 col-sm-8 col-7">
                         <div class="mb-3 mr-2">

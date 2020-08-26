@@ -64,7 +64,7 @@
                 <div class="form-group">
                 {!! Form::open(['route' => ['image.update'], 'method' => 'put', 'files' => true]) !!}
                     <p>
-                        <img src="{{ asset('storage/avatar/' . $user->image_path) }}" alt="avatar_image" />
+                        <img src="{{ Storage::disk('s3')->url($user->image_path) }}" alt="avatar_image" />
                     </p>
                     {!! Form::file('file',['class' => 'mb-3']) !!}
                     <div class="form-group">

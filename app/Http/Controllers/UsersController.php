@@ -8,6 +8,7 @@ use App\User;
 use App\Http\Requests\PasswordUpdateRequest;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Http\Requests\ImageUpdateRequest;
+use Illuminate\Support\Facades\Storage;
 
 class UsersController extends Controller
 {
@@ -98,13 +99,12 @@ class UsersController extends Controller
         $file = $request->file;
         $extension = '.' . substr($file->getClientMimeType(),6);
         $user = User::find(auth()->id());
-        $name = 'profile_image' . date('YmdHis') . $extension;
-        $path = public_path('storage/avatar/' . $user->id);
-        if(!\File::exists($path)) {
-            \File::makeDirectory($path);
-        }
-        InterventionImage::make($file)->fit(256, 256)->save($path . '/' . $name);
-        $user->image_path = $user->id . '/' . $name;
+        $name = 'profile_image_' . date('YmdHis') . $extension;
+        $dir = $user->id;
+        $image = InterventionImage::make($file)->fit(256, 256);
+        Storage::disk('s3')->makeDirectory($dir);
+        Storage::disk('s3')->put($dir . '/' . $name, (string) $image->encode(), 'public');
+        $user->image_path = $dir . '/' . $name;
         $user->save();
         
         return back()->with('flash_message', 'プロフィール画像を更新しました。');
