@@ -103,7 +103,7 @@ class UsersController extends Controller
         $dir = $user->id;
         $image = InterventionImage::make($file)->fit(256, 256);
         Storage::disk('s3')->makeDirectory($dir);
-        Storage::disk('s3')->put($dir . '/' . $name, (string) $image->encode(), 'public');
+        Storage::disk('s3')->put($dir . '/' . $name, $image->encode(), 'public');
         $user->image_path = $dir . '/' . $name;
         $user->save();
         
