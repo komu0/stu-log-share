@@ -15,7 +15,7 @@ class CategoriesController extends Controller
         $user->categories()->create([
             'name' => $request->name,
         ]);
-        return redirect('setting/tags')->with('flash_message', 'カテゴリ「'. $request->name .'」を追加しました。');
+        return redirect('settings/tags')->with('flash_message', 'カテゴリ「'. $request->name .'」を追加しました。');
     }
     
     public function updateOrder(CategoryOrderRequest $request)
@@ -25,7 +25,7 @@ class CategoriesController extends Controller
                 'order' => $order,
             ]);
         }
-        return redirect('setting/tags')->with('flash_message', '優先順位を変更しました。');
+        return redirect('settings/tags')->with('flash_message', '優先順位を変更しました。');
     }
     
     public function updateName(CategoryRequest $request, $id)
@@ -35,7 +35,7 @@ class CategoriesController extends Controller
         Category::find($id)->update([
             'name' => $request->name,
         ]);
-        return redirect('setting/tags')->with('flash_message', 'カテゴリ名を編集しました。(「'.$old_name.'」→「'.$new_name.'」)');
+        return redirect('settings/tags')->with('flash_message', 'カテゴリ名を編集しました。(「'.$old_name.'」→「'.$new_name.'」)');
     }
     
     public function destroy($id)
@@ -44,11 +44,11 @@ class CategoriesController extends Controller
         $category_name = $category->name;
         
         if($category->stulog_contents()->exists()) {
-            return redirect('setting/tags')->with('flash_error_message', '既にスタログが投稿されているため削除できません。');
+            return redirect('settings/tags')->with('flash_error_message', '既にスタログが投稿されているため削除できません。');
         }
         if ( \Auth::id() == $category->user->id ) {
             $category->delete();
         }
-        return redirect('setting/tags')->with('flash_message', 'カテゴリ「'. $category_name .'」を削除しました。');
+        return redirect('settings/tags')->with('flash_message', 'カテゴリ「'. $category_name .'」を削除しました。');
     }
 }

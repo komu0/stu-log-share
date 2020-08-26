@@ -16,7 +16,7 @@ class TagsController extends Controller
         $category->tags()->create([
             'name' => $request->name,
         ]);
-        return redirect('setting/tags')->with('flash_message', 'タグ「'. $request->name .'」を追加しました。');
+        return redirect('settings/tags')->with('flash_message', 'タグ「'. $request->name .'」を追加しました。');
     }
     
     public function updateOrder(TagOrderRequest $request)
@@ -26,7 +26,7 @@ class TagsController extends Controller
                 'order' => $order,
             ]);
         }
-        return redirect('setting/tags')->with('flash_message', '優先順位を変更しました。');
+        return redirect('settings/tags')->with('flash_message', '優先順位を変更しました。');
     }
     
     public function updateName(TagRequest $request, $id)
@@ -36,7 +36,7 @@ class TagsController extends Controller
         Tag::find($id)->update([
             'name' => $request->name,
         ]);
-        return redirect('setting/tags')->with('flash_message', 'タグ名を編集しました。(「'.$old_name.'」→「'.$new_name.'」)');
+        return redirect('settings/tags')->with('flash_message', 'タグ名を編集しました。(「'.$old_name.'」→「'.$new_name.'」)');
     }
     
     public function destroy($id)
@@ -45,12 +45,12 @@ class TagsController extends Controller
         $tag_name = $tag->name;
         
         if($tag->stulog_contents()->exists()) {
-            return redirect('setting/tags')->with('flash_error_message', '既にスタログが投稿されているため削除できません。');
+            return redirect('settings/tags')->with('flash_error_message', '既にスタログが投稿されているため削除できません。');
         }
         if ( \Auth::id() == $tag->user->id ) {
             $tag->delete();
         }
-        return redirect('setting/tags')->with('flash_message', 'タグ「'. $tag_name .'」を削除しました。');
+        return redirect('settings/tags')->with('flash_message', 'タグ「'. $tag_name .'」を削除しました。');
     }
     
     public function updateCategory(Request $request, $id)
@@ -63,6 +63,6 @@ class TagsController extends Controller
         Tag::find($id)->update([
             'category_id' => $category_id,
         ]);
-        return redirect('setting/tags')->with('flash_message', 'タグ「'.$tag_name.'」を移動しました。(「'.$old_category.'」→「'.$new_category.'」)');
+        return redirect('settings/tags')->with('flash_message', 'タグ「'.$tag_name.'」を移動しました。(「'.$old_category.'」→「'.$new_category.'」)');
     }
 }
