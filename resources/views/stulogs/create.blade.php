@@ -22,51 +22,26 @@
         <div class="col-lg-7 col-sm-5 col-11">内容</div>
       </div>
     </div>
+    <div class="d-sm-none mb-3">
+      ※タグ・勉強時間・内容の順に入力してください。
+    </div>
     @foreach($contentsArray as $i => $content)
-    <!--sm以上のデザイン-->
-    <div class="d-none d-sm-inline">
+    <div>
+      <div class="d-flex align-items-end">
+          {!! Form::label("num", sprintf('%02d',$i + 1), ['class'=>'d-sm-none']) !!}
+      </div>
       <div class="row">
         <div class="d-flex align-items-end">
-            {!! Form::label(sprintf('%02d',$i + 1)) !!}
+            {!! Form::label("num", sprintf('%02d',$i + 1), ['class'=>'d-none d-sm-inline']) !!}
         </div>
-        <div class="col-lg-2 col-sm-3 col-5">
+        <div class="col-lg-2 col-sm-3 col-7">
             {!! Form::text("contentsArray[$i][タグ]", old($contentsArray[$i]['タグ']) , ['class' => 'form-control']) !!}
         </div>
-        <div class="col-lg-2 col-sm-3 col-5">
+        <div class="col-lg-2 col-sm-3 col-7">
             {!! Form::time("contentsArray[$i][勉強時間]", old($contentsArray[$i]['勉強時間']), ['class' => 'form-control']) !!}
         </div>
         <div class="col-lg-7 col-sm-5 col-11">
             {!! Form::text("contentsArray[$i][内容]", old($contentsArray[$i]['内容']), ['class' => 'form-control']) !!}
-        </div>
-      </div>
-    </div>
-    <!--sm未満のデザイン-->
-    <div class="d-sm-none pb-2 border-bottom">
-      <div>
-        {!! Form::label(sprintf('%02d',$i + 1)) !!}
-      </div>
-      <div class="row d-flex align-items-center">
-        <div class="col-3 pr-0">
-            タグ
-        </div>
-        <div class="col-8 pl-0">
-            {!! Form::text("contentsArray[$i][タグ]", old($contentsArray[$i]['タグ']) , ['class' => 'form-control']) !!}
-        </div>
-      </div>
-      <div class="row d-flex align-items-center">
-        <div class="col-3 pr-0">
-            勉強時間
-        </div>
-        <div class="col-8 pl-0">
-            {!! Form::time("contentsArray[$i][勉強時間]", old($contentsArray[$i]['勉強時間']), ['class' => 'form-control']) !!}
-        </div>
-      </div>
-      <div class="row d-flex align-items-center">
-        <div class="col-3 pr-0">
-            内容
-        </div>
-        <div class="col-8 pl-0">
-            {!! Form::textarea("contentsArray[$i][内容]", old($contentsArray[$i]['内容']), ['class' => 'form-control', 'rows' => '2']) !!}
         </div>
       </div>
     </div>
@@ -77,7 +52,7 @@
     {!! Form::textarea('thought', null, ['class' => 'form-control']) !!}
   </div>
   <div class="row">
-    {!! Form::submit('編集', ['class' => 'btn btn-primary btn-lg']) !!}
+    {!! Form::submit('投稿', ['class' => 'btn btn-primary btn-lg']) !!}
     {!! Form::close() !!}
     <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#deleteModal">
       削除
