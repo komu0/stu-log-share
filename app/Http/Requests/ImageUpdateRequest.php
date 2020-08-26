@@ -30,6 +30,7 @@ class ImageUpdateRequest extends FormRequest
                 'file',
                 'image',
                 'mimes:jpeg,png',
+                'max:2048'
             ]
         ];
     }
@@ -38,6 +39,7 @@ class ImageUpdateRequest extends FormRequest
     {
         return [
             'file.required' => '画像が選択されていません。',
+            'file.max' => '2MB以上の画像は選択できません。'
         ];
     }
 }
