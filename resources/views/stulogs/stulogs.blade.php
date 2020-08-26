@@ -1,6 +1,6 @@
 @if (count($stulogs) > 0)
     @foreach ($stulogs as $stulog)
-        <div class="mb-4 offset-1 col-10 bg-light border rounded">
+        <div class="mb-4 offset-sm-1 col-sm-10 col-12 bg-light border rounded">
             <div class="mt-2 mb-2">
                 <div class="mb-2">
                     <div class="d-md-inline">
@@ -64,7 +64,7 @@
             </div>
         </div>
     @endforeach
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center mb-5">
         {{ $stulogs->onEachSide(1)->links() }}
     </div>
 @else
