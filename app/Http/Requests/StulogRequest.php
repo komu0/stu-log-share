@@ -64,7 +64,7 @@ class StulogRequest extends FormRequest
         $max300 = function($attribute, $value, $fail) {
             if (mb_strlen(preg_replace("/\r\n/", "", $value)) > 300){
                 if ($attribute == 'thought') {
-                    $fail('感想は300文字以下で入力してください。');
+                    $fail('感想は300字以下で入力してください。');
                 } else {
                     $fail('文字数が多すぎます。');
                 }

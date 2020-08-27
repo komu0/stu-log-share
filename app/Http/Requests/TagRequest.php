@@ -37,7 +37,7 @@ class TagRequest extends FormRequest
         return [
             'name' => [
                 'required',
-                'max:15',
+                'max:10',
                 $unique,
             ],
         ];
@@ -47,7 +47,7 @@ class TagRequest extends FormRequest
     {
         return [
             'name.required' => 'タグ名を入力してください。',
-            'name.max' => 'タグ名は15文字以下で入力してください。',
+            'name.max' => 'タグ名は10字以下で入力してください。',
         ];
     }
     

@@ -30,7 +30,7 @@ class CategoryRequest extends FormRequest
                 Rule::unique('categories')->ignore($this->input('id'))->where(function($query) {
                     $query->where('user_id', $this->input('user_id'));
                 }),
-                'max:15',
+                'max:10',
             ],
         ];
     }
@@ -39,7 +39,7 @@ class CategoryRequest extends FormRequest
     {
         return [
             'name.required' => 'カテゴリ名を入力してください。',
-            'name.max' => 'カテゴリ名は15文字以下で入力してください。',
+            'name.max' => 'カテゴリ名は10字以下で入力してください。',
             'name.unique' => 'そのカテゴリ名は既に存在します。',
         ];
     }
