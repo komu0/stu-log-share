@@ -29,7 +29,11 @@
                     フォロワー:{!! link_to_route('users.followers', $user->followers_count , ['id' => $user->id]) !!}
                 </div>
             </div>
-            <p class="font-weight-bold mb-4 mt-4">{!! nl2br(e($user->profile)) !!}</p>
+            @if ($user->profile)
+                <p class="font-weight-bold mb-4 mt-4">{!! nl2br(e($user->profile)) !!}</p>
+            @else
+                <p class="font-weight-bold mb-4 mt-4 text-muted">※プロフィールが設定されていません。</p>
+            @endif
         </div>
     </div>
     <div class = "ml-3 mb-4 row">
