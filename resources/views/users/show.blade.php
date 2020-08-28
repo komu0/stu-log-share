@@ -29,15 +29,17 @@
                     フォロワー:{!! link_to_route('users.followers', $user->followers_count , ['id' => $user->id]) !!}
                 </div>
             </div>
-            <div class="mb-4 mt-4">
+            <div class="row mt-4 mb-4">
             @if ($user->profile)
-                <p class="font-weight-bold d-inline">{!! nl2br(e($user->profile)) !!}</p>
+                <div class="ml-2 mr-2 p-2 font-weight-bold col-sm-8 border border-primary rounded">{!! nl2br(e($user->profile)) !!}</div>
             @else
-                <p class="font-weight-bold d-inline text-muted">※プロフィールが設定されていません。</p>
+                <div  class="ml-2 mr-2 p-2 font-weight-bold col-sm-8 border border-primary rounded text-muted">※プロフィールが設定されていません。</div>
             @endif
             @if (Auth::check())
                 @if (Auth::user()->id == $user->id)
-                    <a class="d-inline btn btn-primary btn-sm" href="#" data-toggle="modal" data-target=#updateProfile>編集</a>
+                    <div class="ml-2 d-flex align-items-end">
+                        <a class="btn btn-primary btn-sm" href="#" data-toggle="modal" data-target=#updateProfile>編集</a>
+                    </div>
                 @endif
             @endif
             </div>
