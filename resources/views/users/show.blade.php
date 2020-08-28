@@ -29,11 +29,18 @@
                     フォロワー:{!! link_to_route('users.followers', $user->followers_count , ['id' => $user->id]) !!}
                 </div>
             </div>
+            <div class="mb-4 mt-4">
             @if ($user->profile)
-                <p class="font-weight-bold mb-4 mt-4">{!! nl2br(e($user->profile)) !!}</p>
+                <p class="font-weight-bold d-inline">{!! nl2br(e($user->profile)) !!}</p>
             @else
-                <p class="font-weight-bold mb-4 mt-4 text-muted">※プロフィールが設定されていません。</p>
+                <p class="font-weight-bold d-inline text-muted">※プロフィールが設定されていません。</p>
             @endif
+            @if (Auth::check())
+                @if (Auth::user()->id == $user->id)
+                    <a class="d-inline btn btn-primary btn-sm" href="#" data-toggle="modal" data-target=#updateProfile>編集</a>
+                @endif
+            @endif
+            </div>
         </div>
     </div>
     <div class = "ml-3 mb-4 row">
@@ -41,4 +48,5 @@
         @include('user_mute.mute_button')
     </div>
     @include('stulogs.stulogs')
+@include('modal.update_profile')
 @endsection
