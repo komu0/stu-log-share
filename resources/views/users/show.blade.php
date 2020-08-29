@@ -7,7 +7,12 @@
     </h2>
     <div class="row mb-3">
         <div class="col-md-2 col-sm-4 offset-sm-0 offset-3 col-6">
-            <img class="img-fluid" src="{{ Storage::disk('s3')->url($user->image_path) }}" alt="avatar_image" />
+            <img class="img-fluid mb-2" src="{{ Storage::disk('s3')->url($user->image_path) }}" alt="avatar_image" />
+            @if (Auth::check())
+                @if (Auth::user()->id == $user->id)
+                    <div class="btn btn-block btn-primary btn-sm" href="#" data-toggle="modal" data-target=#updateImage>アイコンを変更</div>
+                @endif
+            @endif
         </div>
         <div class="col-md-10 col-sm-8">
             <div>
@@ -51,4 +56,5 @@
     </div>
     @include('stulogs.stulogs')
 @include('modal.update_profile')
+@include('modal.update_image')
 @endsection
