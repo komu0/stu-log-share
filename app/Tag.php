@@ -68,6 +68,12 @@ class Tag extends Model
         return $time_trans_array;
     }
     
+    public function study_time_percentage()
+    {
+        $percentage = round($this->study_time() / $this->category->study_time() * 100, 1);
+        return $percentage;
+    }
+    
     //dropdownのclassを返す
     public function can_move_to_another_category()
     {

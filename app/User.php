@@ -235,4 +235,13 @@ class User extends Authenticatable
         }
         return $time_trans_array;
     }
+    
+    public function study_time_percentage_array()
+    {
+        $study_time_percentage_array = [];
+        foreach ($this->categories as $category) {
+            $study_time_percentage_array[$category->name] = $category->study_time_percentage();
+        }
+        return $study_time_percentage_array;
+    }
 }

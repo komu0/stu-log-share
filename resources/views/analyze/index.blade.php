@@ -5,9 +5,11 @@
     <h3>勉強時間内訳</h3>
     <div>
         <a data-toggle="collapse" href="#collapseCategories" aria-expanded="true">
-        <small>▼</small>
+            <small>▼</small>
         </a>
-        総勉強時間：{{$user->display_study_time()}}<br>
+        <a href="#" data-toggle="modal" data-target=#all_study_time>
+            総勉強時間：{{$user->display_study_time()}}<br>
+        </a>
     </div>
     <div class="collapse show ml-4" id="collapseCategories">
         @foreach ($user->categories as $i => $category)
@@ -26,6 +28,7 @@
         </div>
         @endforeach
     </div>
+@include('analyze.modal.all_study_time')
 </section>
 <section class="mb-3">
     <h3>勉強時間推移</h3>

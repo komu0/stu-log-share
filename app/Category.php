@@ -63,4 +63,19 @@ class Category extends Model
         }
         return "";
     }
+    
+    public function study_time_percentage()
+    {
+        $percentage = round($this->study_time() / $this->user->study_time() * 100, 1);
+        return $percentage;
+    }
+    
+    public function study_time_percentage_array()
+    {
+        $study_time_percentage_array = [];
+        foreach ($this->tags as $tag) {
+            $study_time_percentage_array[$tag->name] = $tag->study_time_percentage();
+        }
+        return $study_time_percentage_array;
+    }
 }
