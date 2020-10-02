@@ -2,7 +2,6 @@
 @section('content')
 <h2 class="mb-4">{!! link_to_route('users.show', $user->id, ['user' => $user->id]) !!}さんの分析ページ</h2>
 <section class="mb-3">
-    <h3>勉強時間内訳</h3>
     <div>
         <a data-toggle="collapse" href="#collapseCategories" aria-expanded="true">
             <small>▼</small>
@@ -35,20 +34,5 @@
         @endforeach
     </div>
 @include('analyze.modal.all_study_time')
-</section>
-<section class="mb-3">
-    <h3>勉強時間推移</h3>
-    <p>最終的にはグラフを書く</p>
-    <div class="row">
-    @foreach ($timeTransArray as $name=>$timeTrans)
-        <div class="col-md-2">
-        {{$name}}<br>
-        @foreach ($timeTrans as $date=>$time)
-            {{$date}}：{{$time}}<br>
-        @endforeach
-        <br>
-        </div>
-    @endforeach
-    </div>
 </section>
 @endsection

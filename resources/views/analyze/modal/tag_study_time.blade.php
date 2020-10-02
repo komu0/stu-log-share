@@ -15,7 +15,7 @@
                     推移
                 </a>
                 <div class="collapse mt-2" id="collapseTagTrans{{$tag->id}}">
-                    @foreach ($category->time_trans_array() as $key => $time)
+                    @foreach ($tag->time_trans_array() as $key => $time)
                         {{$key}}：{{$time}}時間<br>
                     @endforeach
                 </div>
