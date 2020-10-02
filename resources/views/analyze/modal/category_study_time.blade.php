@@ -18,10 +18,10 @@
                         です。
                     @endif
                 </div>
-                <a data-toggle="collapse" href="#collapseAllTrans{{$category->id}}" aria-expanded="true" class="btn btn-primary">
+                <a data-toggle="collapse" href="#collapseCategoryTrans{{$category->id}}" aria-expanded="true" class="btn btn-primary">
                     推移
                 </a>
-                <div class="collapse mt-2" id="collapseAllTrans{{$category->id}}">
+                <div class="collapse mt-2" id="collapseCategoryTrans{{$category->id}}">
                     @foreach ($category->time_trans_array() as $key => $time)
                         {{$key}}：{{$time}}時間<br>
                     @endforeach

@@ -8,7 +8,17 @@
                 </button>
             </div>
             <div class="modal-body ml-3">
+                <div class="mb-3">
                 カテゴリ「{{$tag->name}}」の勉強時間は{{$tag->study_time()}}時間です。<br>
+                </div>
+                <a data-toggle="collapse" href="#collapseTagTrans{{$tag->id}}" aria-expanded="true" class="btn btn-primary">
+                    推移
+                </a>
+                <div class="collapse mt-2" id="collapseTagTrans{{$tag->id}}">
+                    @foreach ($category->time_trans_array() as $key => $time)
+                        {{$key}}：{{$time}}時間<br>
+                    @endforeach
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
