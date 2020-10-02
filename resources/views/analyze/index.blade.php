@@ -17,7 +17,9 @@
             <a data-toggle="collapse" href="#collapseTags{{$category->id}}" aria-expanded="true">
             <small>▼</small>
             </a>
-            {{$category->name}}：{{ $category->display_study_time() }}
+            <a href="#" data-toggle="modal" data-target="#categoryAnalyze{{$category->id}}">
+                {{$category->name}}：{{ $category->display_study_time() }}
+            </a>
             <div class="collapse show ml-4" id="collapseTags{{$category->id}}">
                 @foreach ($category->tags as $j => $tag)
                 <li>
@@ -26,6 +28,7 @@
                 @endforeach
             </div>
         </div>
+        @include('analyze.modal.category_study_time')
         @endforeach
     </div>
 @include('analyze.modal.all_study_time')
