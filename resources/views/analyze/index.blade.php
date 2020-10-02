@@ -15,7 +15,7 @@
         @foreach ($user->categories as $i => $category)
         <div>
             <a data-toggle="collapse" href="#collapseTags{{$category->id}}" aria-expanded="true">
-            <small>▼</small>
+                <small>▼</small>
             </a>
             <a href="#" data-toggle="modal" data-target="#categoryAnalyze{{$category->id}}">
                 {{$category->name}}：{{ $category->display_study_time() }}

@@ -8,6 +8,7 @@
                 </button>
             </div>
             <div class="modal-body ml-3">
+                <div class="mb-3">
                 総勉強時間は{{$user->study_time()}}時間です。<br>
                 @if ($user->study_time() > 0)
                     内訳は、<br>
@@ -16,6 +17,15 @@
                     @endforeach
                     です。
                 @endif
+                </div>
+                <a data-toggle="collapse" href="#collapseAllTrans" aria-expanded="true" class="btn btn-primary">
+                    推移
+                </a>
+                <div class="collapse mt-2" id="collapseAllTrans">
+                    @foreach ($user->time_trans_array() as $key => $time)
+                        {{$key}}：{{$time}}時間<br>
+                    @endforeach
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
