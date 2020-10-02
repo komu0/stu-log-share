@@ -48,7 +48,9 @@ class Category extends Model
         for($date =$startDate; $date <= $today; $date = strToTime('+1 day', $date)){
             $display_date = date('Y年m月d日', $date);
             if($this->stulog_contents()->where('log_date', date('Y-m-d', $date))->exists()){
-                $time += $this->stulog_contents()->where('log_date', date('Y-m-d',$date))->first()->study_time;
+                foreach($this->stulog_contents()->where('log_date', date('Y-m-d', $date))->get() as $content) {
+                    $time += $content->study_time;
+                }
             }
             $time_trans_array[$display_date] = $time;
         }
