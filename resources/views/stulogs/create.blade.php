@@ -54,9 +54,6 @@
   <div class="row">
     {!! Form::submit('投稿', ['class' => 'btn btn-primary btn-lg']) !!}
     {!! Form::close() !!}
-    <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#deleteModal">
-      削除
-    </button>
   </div>
 </div>
 @endsection
