@@ -15,9 +15,10 @@
 
 ## 使用技術
 - 開発環境…AWS Cloud9
+- フロントエンド…HTML、Bootstrap(CSSライブラリ)
+- サーバサイド…PHP、Laravel(フレームワーク)
 - ストレージ…AWS S3
 - データベース…MySQL
-- フレームワーク…PHP/Laravel
 - デプロイ環境…heroku
 
 ## 採用担当の方へ
