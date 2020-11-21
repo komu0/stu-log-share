@@ -14,7 +14,7 @@
 - パスワードの変更機能。
 
 ## 使用技術
-- 開発環境…AWS Cloud9
+- 開発環境…Ubuntu(AWS Cloud9)
 - フロントエンド…HTML、Bootstrap(CSSライブラリ)
 - サーバサイド…PHP、Laravel(フレームワーク)
 - ストレージ…AWS S3
